@@ -1,0 +1,126 @@
+[
+  {
+    "caseId": "case-001",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [],
+    "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+    "description": "Expediente completo y consistente"
+  },
+  {
+    "caseId": "case-002",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "RFC_MISMATCH"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "description": "RFC de solicitud distinto de constancia"
+  },
+  {
+    "caseId": "case-003",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "INE_EXPIRED"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "description": "Identificación vencida"
+  },
+  {
+    "caseId": "case-004",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "ADDRESS_MISSING"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "description": "Comprobante de domicilio ausente"
+  },
+  {
+    "caseId": "discovery-identity-absent",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "IDENTITY_MISSING"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "description": "No existe documento de identidad aunque haya fecha de vigencia declarada"
+  },
+  {
+    "caseId": "validation-expiry-today",
+    "suite": "validation",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [],
+    "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+    "description": "Identidad válida hasta la fecha de evaluación inclusive"
+  },
+  {
+    "caseId": "validation-combined",
+    "suite": "validation",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "ADDRESS_MISSING",
+      "RFC_MISMATCH",
+      "INE_EXPIRED"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "description": "Tres incidencias simultáneas; la información faltante tiene prioridad"
+  },
+  {
+    "caseId": "validation-address-list",
+    "suite": "validation",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "ADDRESS_MISSING"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "description": "La lista documental no contiene domicilio aunque el indicador sea verdadero"
+  },
+  {
+    "caseId": "validation-clean",
+    "suite": "validation",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [],
+    "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+    "description": "Control consistente con RFC alternativo"
+  },
+  {
+    "caseId": "holdout-expiry-yesterday",
+    "suite": "holdout",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "INE_EXPIRED"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "description": "Identidad vencida un día antes del corte"
+  },
+  {
+    "caseId": "holdout-rfc",
+    "suite": "holdout",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "RFC_MISMATCH"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "description": "Contradicción fiscal en caso reservado"
+  },
+  {
+    "caseId": "holdout-clean",
+    "suite": "holdout",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [],
+    "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+    "description": "Control válido al día siguiente del corte"
+  },
+  {
+    "caseId": "holdout-identity-absent",
+    "suite": "holdout",
+    "evaluationDate": "2026-11-09",
+    "expectedCodes": [
+      "IDENTITY_MISSING"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "description": "Ausencia de identidad con vigencia futura; no inferir documento presente"
+  }
+]

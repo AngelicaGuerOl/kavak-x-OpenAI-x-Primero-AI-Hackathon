@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-09T22:48:36.322Z",
+  "authenticated": true,
+  "inferenceCompleted": true,
+  "availableModels": [
+    "gpt-6-luna",
+    "gpt-6.1-sol",
+    "gpt-6.1-terra",
+    "gpt-image-2.5-flare",
+    "gpt-image-2.5-sunburst",
+    "gpt-transcribe",
+    "text-embedding-3-small"
+  ],
+  "model": "gpt-6-luna",
+  "responseId": "resp_09606866233985f5016af24dc5972087d1bca3c6d6ef9bf82d",
+  "usage": {
+    "input_tokens": 52,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 49,
+    "output_tokens_details": {
+      "reasoning_tokens": 33
+    },
+    "total_tokens": 101
+  },
+  "documentAppearance": {
+    "accent": "navy",
+    "layout": "cards"
+  },
+  "executionMode": "real"
+}

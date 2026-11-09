@@ -1,0 +1,51 @@
+{
+  "runId": "0934008c-a972-4ad6-b202-0f1f8fd90f76",
+  "version": "v004",
+  "suite": "discovery",
+  "requestedMode": "real",
+  "executionMode": "unavailable",
+  "model": "gpt-5.6-luna",
+  "startedAt": "2026-11-09T22:43:35.781Z",
+  "finishedAt": "2026-11-09T22:43:36.650Z",
+  "suiteHash": "19ec41641b9e10c6387474065f947932d62ee4a87089cc6b30ffe8bf83b9476e",
+  "metric": {
+    "passed": 0,
+    "total": 1,
+    "completed": 0,
+    "unavailable": 1,
+    "omissions": 0,
+    "falsePositives": 0,
+    "statusMismatches": 0
+  },
+  "results": [
+    {
+      "caseId": "case-001",
+      "suite": "discovery",
+      "evaluationRunId": "0934008c-a972-4ad6-b202-0f1f8fd90f76",
+      "version": "v004",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "case-001",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [],
+        "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+        "description": "Expediente completo y consistente"
+      },
+      "inputHash": "fc8ceeba787e9b45494116bacde3843486fec14b0ec037e8eb9ac321a73fb607",
+      "status": "unavailable",
+      "passed": false,
+      "output": null,
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": null,
+      "actualCodes": [],
+      "durationMs": 868.6793620000001,
+      "error": "KYC Agent: model_not_found",
+      "partialExecution": {
+        "runId": "9f596d91-1624-405e-8a1e-81a4371376f6",
+        "agentTrace": []
+      }
+    }
+  ]
+}

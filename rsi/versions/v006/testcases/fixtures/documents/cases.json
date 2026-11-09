@@ -1,0 +1,290 @@
+[
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "synthetic": true,
+    "creditBureauConsent": false,
+    "documents": [
+      {
+        "id": "doc-discovery-clean-identity",
+        "kind": "IDENTITY",
+        "title": "Ficha de identidad de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D01",
+          "Identificador de prueba": "ID-DEMO-D01",
+          "Vigencia": "2030-12-31"
+        }
+      },
+      {
+        "id": "doc-discovery-clean-tax",
+        "kind": "TAX_RECORD",
+        "title": "Ficha fiscal de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D01",
+          "RFC declarado": "RFC-DEMO-D01",
+          "RFC en constancia": "RFC-DEMO-D01"
+        }
+      },
+      {
+        "id": "doc-discovery-clean-address",
+        "kind": "ADDRESS",
+        "title": "Referencia de domicilio de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D01",
+          "Domicilio": "Calle Imaginaria 000, Ciudad de Prueba",
+          "Fecha de emisión": "2026-10-15"
+        }
+      },
+      {
+        "id": "doc-discovery-clean-income",
+        "kind": "INCOME",
+        "title": "Declaración de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D01",
+          "Periodo": "2026-10",
+          "Ingreso mensual": "18000.00 MXN"
+        }
+      }
+    ]
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "synthetic": true,
+    "creditBureauConsent": false,
+    "documents": [
+      {
+        "id": "doc-discovery-rfc-identity",
+        "kind": "IDENTITY",
+        "title": "Ficha de identidad de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D02",
+          "Identificador de prueba": "ID-DEMO-D02",
+          "Vigencia": "2030-12-31"
+        }
+      },
+      {
+        "id": "doc-discovery-rfc-tax",
+        "kind": "TAX_RECORD",
+        "title": "Ficha fiscal de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D02",
+          "RFC declarado": "RFC-DEMO-D02",
+          "RFC en constancia": "RFC-DEMO-OTRO"
+        }
+      },
+      {
+        "id": "doc-discovery-rfc-address",
+        "kind": "ADDRESS",
+        "title": "Referencia de domicilio de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D02",
+          "Domicilio": "Calle Imaginaria 000, Ciudad de Prueba",
+          "Fecha de emisión": "2026-10-15"
+        }
+      },
+      {
+        "id": "doc-discovery-rfc-income",
+        "kind": "INCOME",
+        "title": "Declaración de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética D02",
+          "Periodo": "2026-10",
+          "Ingreso mensual": "18000.00 MXN"
+        }
+      }
+    ]
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "synthetic": true,
+    "creditBureauConsent": false,
+    "documents": [
+      {
+        "id": "doc-validation-expired-identity",
+        "kind": "IDENTITY",
+        "title": "Ficha de identidad de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V01",
+          "Identificador de prueba": "ID-DEMO-V01",
+          "Vigencia": "2026-10-31"
+        }
+      },
+      {
+        "id": "doc-validation-expired-tax",
+        "kind": "TAX_RECORD",
+        "title": "Ficha fiscal de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V01",
+          "RFC declarado": "RFC-DEMO-V01",
+          "RFC en constancia": "RFC-DEMO-V01"
+        }
+      },
+      {
+        "id": "doc-validation-expired-address",
+        "kind": "ADDRESS",
+        "title": "Referencia de domicilio de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V01",
+          "Domicilio": "Calle Imaginaria 000, Ciudad de Prueba",
+          "Fecha de emisión": "2026-10-15"
+        }
+      },
+      {
+        "id": "doc-validation-expired-income",
+        "kind": "INCOME",
+        "title": "Declaración de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V01",
+          "Periodo": "2026-10",
+          "Ingreso mensual": "18000.00 MXN"
+        }
+      }
+    ]
+  },
+  {
+    "caseId": "doc-validation-no-address",
+    "suite": "validation",
+    "synthetic": true,
+    "creditBureauConsent": false,
+    "documents": [
+      {
+        "id": "doc-validation-no-address-identity",
+        "kind": "IDENTITY",
+        "title": "Ficha de identidad de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V02",
+          "Identificador de prueba": "ID-DEMO-V02",
+          "Vigencia": "2030-12-31"
+        }
+      },
+      {
+        "id": "doc-validation-no-address-tax",
+        "kind": "TAX_RECORD",
+        "title": "Ficha fiscal de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V02",
+          "RFC declarado": "RFC-DEMO-V02",
+          "RFC en constancia": "RFC-DEMO-V02"
+        }
+      },
+      {
+        "id": "doc-validation-no-address-income",
+        "kind": "INCOME",
+        "title": "Declaración de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética V02",
+          "Periodo": "2026-10",
+          "Ingreso mensual": "18000.00 MXN"
+        }
+      }
+    ]
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "synthetic": true,
+    "creditBureauConsent": false,
+    "documents": [
+      {
+        "id": "doc-holdout-income-missing-identity",
+        "kind": "IDENTITY",
+        "title": "Ficha de identidad de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H01",
+          "Identificador de prueba": "ID-DEMO-H01",
+          "Vigencia": "2030-12-31"
+        }
+      },
+      {
+        "id": "doc-holdout-income-missing-tax",
+        "kind": "TAX_RECORD",
+        "title": "Ficha fiscal de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H01",
+          "RFC declarado": "RFC-DEMO-H01",
+          "RFC en constancia": "RFC-DEMO-H01"
+        }
+      },
+      {
+        "id": "doc-holdout-income-missing-address",
+        "kind": "ADDRESS",
+        "title": "Referencia de domicilio de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H01",
+          "Domicilio": "Calle Imaginaria 000, Ciudad de Prueba",
+          "Fecha de emisión": "2026-10-15"
+        }
+      },
+      {
+        "id": "doc-holdout-income-missing-income",
+        "kind": "INCOME",
+        "title": "Declaración de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H01",
+          "Periodo": "2026-10",
+          "Ingreso mensual": null
+        }
+      }
+    ]
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "synthetic": true,
+    "creditBureauConsent": false,
+    "documents": [
+      {
+        "id": "doc-holdout-income-conflict-identity",
+        "kind": "IDENTITY",
+        "title": "Ficha de identidad de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H02",
+          "Identificador de prueba": "ID-DEMO-H02",
+          "Vigencia": "2030-12-31"
+        }
+      },
+      {
+        "id": "doc-holdout-income-conflict-tax",
+        "kind": "TAX_RECORD",
+        "title": "Ficha fiscal de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H02",
+          "RFC declarado": "RFC-DEMO-H02",
+          "RFC en constancia": "RFC-DEMO-H02"
+        }
+      },
+      {
+        "id": "doc-holdout-income-conflict-address",
+        "kind": "ADDRESS",
+        "title": "Referencia de domicilio de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H02",
+          "Domicilio": "Calle Imaginaria 000, Ciudad de Prueba",
+          "Fecha de emisión": "2026-10-15"
+        }
+      },
+      {
+        "id": "doc-holdout-income-conflict-income",
+        "kind": "INCOME",
+        "title": "Declaración de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H02",
+          "Periodo": "2026-10",
+          "Ingreso mensual": "18000.00 MXN"
+        }
+      },
+      {
+        "id": "doc-holdout-income-conflict-income-proof",
+        "kind": "INCOME",
+        "title": "Comprobante de ingresos de prueba",
+        "fields": {
+          "Nombre": "Persona Sintética H02",
+          "Periodo": "2026-10",
+          "Ingreso mensual": "9000.00 MXN"
+        }
+      }
+    ]
+  }
+]

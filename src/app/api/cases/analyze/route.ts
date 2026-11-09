@@ -1,6 +1,6 @@
 import { AnalyzeRequestSchema, AnalyzeResponseSchema } from '@/contracts/case.schema';
 import { analyzeWithAgents, ModelUnavailableError } from '@/server/agents/kyc-verification';
-import { cases } from '@/server/core';
+import { cases } from '@/server/cases';
 
 export async function POST(request: Request) {
   const parsed = AnalyzeRequestSchema.safeParse(await request.json().catch(() => null));
