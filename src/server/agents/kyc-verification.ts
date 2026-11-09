@@ -2,6 +2,7 @@ import { Agent, run, tool } from '@openai/agents';
 import { z } from 'zod';
 import { AnalyzeResponseSchema, FindingSchema } from '@/contracts/case.schema';
 import type { AnalyzeResponse, Finding } from '@/contracts/case';
+import { createReviewItems } from '@/server/review-monitor';
 
 const KycOutputSchema = z.object({
   documentKinds: z.array(z.string()),
@@ -23,6 +24,7 @@ const SyntheticCaseSchema = z.object({
   documents: z.array(z.string()),
 });
 type SyntheticCase = z.infer<typeof SyntheticCaseSchema>;
+const agentModel = process.env.OPENAI_AGENT_MODEL || 'gpt-6-luna';
 
 function parseCaseJson(caseJson: string): SyntheticCase {
   return SyntheticCaseSchema.parse(JSON.parse(caseJson));
@@ -63,6 +65,7 @@ export function createKycAgent(toolCalls: string[] = [], listedDocuments: string
 
   return new Agent({
     name: 'KYC Agent',
+    model: agentModel,
     instructions: 'Review only the supplied synthetic account-opening case. Use the document listing tool. Identify what is present and prepare specific checks for Verification. Never decide credit eligibility or claim official verification.',
     outputType: KycOutputSchema,
     tools: [listDocuments],
@@ -84,6 +87,7 @@ export function createVerificationAgent(toolCalls: string[] = [], executedFindin
 
   return new Agent({
     name: 'Verification Agent',
+    model: agentModel,
     instructions: 'Verify the supplied synthetic account case using the comparison tool. Report only findings returned by the tool and cite its evidence. Keep all outcomes subject to human review; never approve or reject credit or claim official external checks.',
     outputType: VerificationOutputSchema,
     tools: [compareFields],
@@ -184,6 +188,7 @@ export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResp
     runId,
     status,
     findings,
+    reviewItems: createReviewItems(findings),
     agentTrace: trace,
     productGuidance: [],
     executionMode: 'real',

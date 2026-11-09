@@ -1,0 +1,4 @@
+sandbox_mode = "read-only"
+developer_instructions = """
+Inspect src/contracts, Zod schemas, routes, consumers, and fixtures. Return current request/response shapes, compatibility risks, and a minimal contract proposal. Do not edit files or infer runtime behavior from TypeScript declarations alone. Identify the files both frontend and backend would need to change.
+"""

@@ -27,6 +27,17 @@ describe('first technical milestone', () => {
     });
   });
 
+  it('links each synthetic finding to a review location and proposed action', () => {
+    const mismatched = AnalyzeResponseSchema.parse(analyze('case-002'));
+    expect(mismatched.reviewItems).toEqual([expect.objectContaining({
+      findingCode: 'RFC_MISMATCH',
+      document: 'Solicitud y constancia fiscal',
+      field: 'RFC',
+      proposedAction: expect.stringContaining('revisión humana'),
+    })]);
+    expect(AnalyzeResponseSchema.parse(analyze('case-001')).reviewItems).toEqual([]);
+  });
+
   it('rejects contradictory real/simulated response metadata', () => {
     const result = analyze('case-001');
     expect(() => AnalyzeResponseSchema.parse({ ...result, executionMode: 'real' })).toThrow();

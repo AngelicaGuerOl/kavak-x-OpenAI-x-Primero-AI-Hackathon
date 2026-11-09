@@ -33,6 +33,14 @@ export interface Finding {
   sourceIds: string[];
 }
 
+/** Review guidance for a finding in a synthetic fixture, not a file-page location. */
+export interface ReviewItem {
+  findingCode: string;
+  document: string;
+  field: string;
+  proposedAction: string;
+}
+
 export interface AgentTraceEntry {
   agent: 'KYC' | 'VERIFICATION' | 'REFLECTION' | 'BUILDER' | 'ORCHESTRATOR';
   action: string;
@@ -52,6 +60,7 @@ export interface AnalyzeResponse {
   runId: string;
   status: CaseStatus;
   findings: Finding[];
+  reviewItems: ReviewItem[];
   agentTrace: AgentTraceEntry[];
   productGuidance: ProductGuidance[];
   executionMode: 'real' | 'simulation';

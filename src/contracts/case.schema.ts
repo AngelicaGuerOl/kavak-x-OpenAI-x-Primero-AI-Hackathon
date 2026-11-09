@@ -20,6 +20,12 @@ export const AnalyzeResponseSchema = z.object({
   runId: z.string().min(1),
   status: z.enum(['PENDING_INFORMATION', 'REQUIRES_REVIEW', 'READY_FOR_HUMAN_REVIEW']),
   findings: z.array(FindingSchema),
+  reviewItems: z.array(z.object({
+    findingCode: z.string().min(1),
+    document: z.string().min(1),
+    field: z.string().min(1),
+    proposedAction: z.string().min(1),
+  })),
   agentTrace: z.array(AgentTraceEntrySchema).min(2),
   productGuidance: z.array(z.object({ product: z.enum(['CARD', 'AUTO_FINANCING', 'HOUSING']), nextStep: z.string(), disclaimer: z.string() })),
   executionMode: z.enum(['real', 'simulation']),

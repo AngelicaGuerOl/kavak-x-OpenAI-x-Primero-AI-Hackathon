@@ -1,0 +1,14 @@
+.lw-panel{max-width:1140px;border:1px solid #d6ddea;border-radius:10px;background:#fff;padding:28px;color:#172242}
+.lw-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
+.lw-heading h2{font-size:28px;letter-spacing:-.7px;line-height:1.2;margin:5px 0 10px}
+.lw-heading p:not(.lw-kicker){color:#53617c;line-height:1.5;margin:0 0 16px}
+.lw-kicker{text-transform:uppercase;letter-spacing:.11em;font-size:11px;font-weight:800;color:#1550c5;margin:0}
+.lw-button{flex:none;border:0;border-radius:8px;background:#0749df;color:#fff;padding:13px 18px;font-weight:700;cursor:pointer}
+.lw-button:hover{background:#003bbd}.lw-button:disabled{opacity:.6;cursor:wait}
+.lw-notice,.lw-error,.lw-mode{padding:13px 16px;border-radius:8px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.lw-notice{background:#edf3ff;color:#29416f;margin:20px 0 0}.lw-error{background:#fff0f0;border:1px solid #f2c9c9;color:#9e2e30;margin:20px 0 0}.lw-mode{background:#edf3ff;color:#29416f;margin:24px 0}
+.lw-section{border-top:1px solid #dce2eb;margin-top:28px;padding-top:22px}.lw-section h3{font-size:20px;margin:0 0 12px}
+.lw-muted{color:#596780;line-height:1.55}.lw-metric{display:flex;align-items:baseline;flex-wrap:wrap;gap:9px 14px;margin:12px 0 19px;color:#61708e;font-size:13px}.lw-metric strong{color:#172242;font-size:26px;letter-spacing:-.4px}
+.lw-list{list-style:none;padding:0;margin:12px 0}.lw-list li{border-top:1px solid #e2e7f0;padding:15px 0}.lw-list li:last-child{border-bottom:1px solid #e2e7f0}.lw-list strong{display:block;margin:5px 0}.lw-list small{font-size:12px;color:#66748d}.lw-list p{margin:6px 0;color:#53617c;line-height:1.5;overflow-wrap:anywhere}
+.lw-workflows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:24px}.lw-workflow-card{min-width:0;border:1px solid #dce2eb;border-radius:9px;padding:20px}.lw-workflow-card h3{font-size:19px;margin:8px 0}.lw-workflow-card h4{font-size:14px;margin:22px 0 10px}.lw-steps{margin:0;padding-left:23px}.lw-steps li{padding:6px 0;overflow-wrap:anywhere}.lw-steps strong{display:block;font-size:13px}.lw-steps span{font-size:13px;color:#53617c}
+@media(max-width:800px){.lw-workflows{grid-template-columns:1fr}.lw-heading{display:block}.lw-heading .lw-button{margin-top:8px}.lw-panel{padding:20px}.lw-heading h2{font-size:23px}}

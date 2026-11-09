@@ -1,0 +1,82 @@
+{
+  "run_id": "e11f779c-76f2-4cdc-89fd-a276b5c717ad",
+  "version_id": "v004",
+  "started_at": "2026-11-09T22:44:25+00:00",
+  "finished_at": "2026-11-09T22:44:26+00:00",
+  "mode": "offline",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=/tmp/sri-vitest-vmzefacl.json"
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0
+  },
+  "test_results": [
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "suite": "agent-model-config",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "expected": "Vitest test passes: first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 9.335165000000075
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "suite": "agent-model-config",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "expected": "Vitest test passes: first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 6.044344000000024
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > rejects contradictory real/simulated response metadata",
+      "suite": "agent-model-config",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > rejects contradictory real/simulated response metadata",
+      "expected": "Vitest test passes: first technical milestone > rejects contradictory real/simulated response metadata",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 1.5074019999999564
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "suite": "agent-model-config",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "expected": "Vitest test passes: first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 2.0561519999999973
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "suite": "agent-model-config",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "expected": "Vitest test passes: first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 4.8301400000000285
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "suite": "agent-model-config",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "expected": "Vitest test passes: first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 1.5243730000000824
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "run_id": "0c0a4d19-281b-4618-907d-fd6b0746ba6b",
+  "version_id": "v005",
+  "started_at": "2026-11-09T22:47:54+00:00",
+  "finished_at": "2026-11-09T22:47:55+00:00",
+  "mode": "offline",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=/tmp/sri-vitest-07rxkc6t.json"
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0
+  },
+  "test_results": [
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "expected": "Vitest test passes: first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 10.256662000000006
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "expected": "Vitest test passes: first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 6.843128999999976
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > links each synthetic finding to a review location and proposed action",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > links each synthetic finding to a review location and proposed action",
+      "expected": "Vitest test passes: first technical milestone > links each synthetic finding to a review location and proposed action",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 0.9593509999999696
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > rejects contradictory real/simulated response metadata",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > rejects contradictory real/simulated response metadata",
+      "expected": "Vitest test passes: first technical milestone > rejects contradictory real/simulated response metadata",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 1.409483000000023
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "expected": "Vitest test passes: first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 2.4817689999999857
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "expected": "Vitest test passes: first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 5.177393999999936
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "suite": "case-monitor",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "expected": "Vitest test passes: first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 1.7751060000000507
+    }
+  ]
+}
