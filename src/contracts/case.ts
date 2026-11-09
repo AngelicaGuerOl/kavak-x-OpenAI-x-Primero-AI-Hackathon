@@ -34,7 +34,7 @@ export interface Finding {
 }
 
 export interface AgentTraceEntry {
-  agent: 'KYC' | 'VERIFICATION' | 'PRODUCT' | 'REFLECTION' | 'BUILDER' | 'ORCHESTRATOR';
+  agent: 'KYC' | 'VERIFICATION' | 'REFLECTION' | 'BUILDER' | 'ORCHESTRATOR';
   action: string;
   result: string;
   toolId?: string;
@@ -54,5 +54,6 @@ export interface AnalyzeResponse {
   findings: Finding[];
   agentTrace: AgentTraceEntry[];
   productGuidance: ProductGuidance[];
-  simulated: true;
+  executionMode: 'real' | 'simulation';
+  simulated: boolean;
 }

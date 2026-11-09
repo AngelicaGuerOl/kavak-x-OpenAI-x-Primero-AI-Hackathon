@@ -18,10 +18,11 @@ El backend valida cada body y devuelve JSON. Errores: `400 INVALID_REQUEST`, `40
 
 ## Reglas de integración
 
-- `agentTrace` registra acciones ejecutadas y herramientas consultadas; no es texto inventado para la UI.
+- `agentTrace` registra acciones ejecutadas y herramientas consultadas; no es texto inventado para la UI. Para el endpoint de análisis, cada respuesta incluye `executionMode: "real" | "simulation"` y un `simulated` coherente con ese modo.
 - `metric.passed/total` sale de evaluación de fixtures independientes, no de valores escritos a mano en el frontend.
 - `WorkflowDefinition.steps[].toolId` debe estar en `ApprovedToolId`; el motor rechaza cualquier otro ID y nunca ejecuta código generado.
-- Todas las verificaciones y datos son simulados (`simulated: true`). Ningún estado representa decisión crediticia.
+- Los fixtures y herramientas de este MVP son sintéticos/simulados. Una ejecución con Agents SDK se marca `executionMode: "real"` porque hubo llamadas reales a agentes de IA, pero eso no convierte los datos ni verificaciones sintéticas en oficiales. Sin `OPENAI_API_KEY`, `/api/cases/analyze` devuelve `503 MODEL_UNAVAILABLE`; no presenta una simulación como ejecución real.
+- Ningún estado representa decisión crediticia.
 - Los timestamps se serializan como cadenas ISO 8601. Las listas vacías son `[]`, nunca `null`.
 
 ## Reparto
