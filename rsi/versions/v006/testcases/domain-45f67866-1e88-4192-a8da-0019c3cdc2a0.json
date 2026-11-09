@@ -1,0 +1,258 @@
+{
+  "runId": "45f67866-1e88-4192-a8da-0019c3cdc2a0",
+  "version": "v004",
+  "suite": "holdout",
+  "requestedMode": "simulation",
+  "executionMode": "simulation",
+  "model": null,
+  "startedAt": "2026-11-09T22:42:18.196Z",
+  "finishedAt": "2026-11-09T22:42:18.197Z",
+  "suiteHash": "71edf63895b121f66293d5270566ef88a010a1c54691b37243dd30759bdc0d10",
+  "metric": {
+    "passed": 3,
+    "total": 4,
+    "completed": 4,
+    "unavailable": 0,
+    "omissions": 1,
+    "falsePositives": 0,
+    "statusMismatches": 1
+  },
+  "results": [
+    {
+      "caseId": "holdout-expiry-yesterday",
+      "suite": "holdout",
+      "evaluationRunId": "45f67866-1e88-4192-a8da-0019c3cdc2a0",
+      "version": "v004",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "holdout-expiry-yesterday",
+        "suite": "holdout",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "INE_EXPIRED"
+        ],
+        "expectedStatus": "REQUIRES_REVIEW",
+        "description": "Identidad vencida un día antes del corte"
+      },
+      "inputHash": "5c9daa0235a448f6591123d49ff45941b0d2aa8fb2fa8851f8041c74e3a04ba3",
+      "actualCodes": [
+        "INE_EXPIRED"
+      ],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "holdout-expiry-yesterday",
+        "runId": "4d3a72b4-f62a-4afc-b301-eb36331302d3",
+        "status": "REQUIRES_REVIEW",
+        "findings": [
+          {
+            "code": "INE_EXPIRED",
+            "severity": "WARNING",
+            "message": "Identificación sintética vencida",
+            "evidence": [
+              "vigencia=2026-11-08"
+            ],
+            "sourceIds": [
+              "check_document_expiry"
+            ]
+          }
+        ],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:42:18.196Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[{\"code\":\"INE_EXPIRED\",\"severity\":\"WARNING\",\"message\":\"Identificación sintética vencida\",\"evidence\":[\"vigencia=2026-11-08\"],\"sourceIds\":[\"check_document_expiry\"]}],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:42:18.196Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.4786699999999655,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "holdout-rfc",
+      "suite": "holdout",
+      "evaluationRunId": "45f67866-1e88-4192-a8da-0019c3cdc2a0",
+      "version": "v004",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "holdout-rfc",
+        "suite": "holdout",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "RFC_MISMATCH"
+        ],
+        "expectedStatus": "REQUIRES_REVIEW",
+        "description": "Contradicción fiscal en caso reservado"
+      },
+      "inputHash": "0da26279e7681877e01293eaab3a862aead332e99899c77df71f1093cccbdb26",
+      "actualCodes": [
+        "RFC_MISMATCH"
+      ],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "holdout-rfc",
+        "runId": "dd59fc3f-13ad-4435-be68-81478ed25717",
+        "status": "REQUIRES_REVIEW",
+        "findings": [
+          {
+            "code": "RFC_MISMATCH",
+            "severity": "WARNING",
+            "message": "RFC distinto entre solicitud y constancia fiscal simulada",
+            "evidence": [
+              "RFC de solicitud y RFC fiscal no coinciden"
+            ],
+            "sourceIds": [
+              "compare_shared_fields"
+            ]
+          }
+        ],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:42:18.197Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[{\"code\":\"RFC_MISMATCH\",\"severity\":\"WARNING\",\"message\":\"RFC distinto entre solicitud y constancia fiscal simulada\",\"evidence\":[\"RFC de solicitud y RFC fiscal no coinciden\"],\"sourceIds\":[\"compare_shared_fields\"]}],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:42:18.197Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.27542800000003353,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "holdout-clean",
+      "suite": "holdout",
+      "evaluationRunId": "45f67866-1e88-4192-a8da-0019c3cdc2a0",
+      "version": "v004",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "holdout-clean",
+        "suite": "holdout",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [],
+        "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+        "description": "Control válido al día siguiente del corte"
+      },
+      "inputHash": "25f7c304251aa1c1bedafea1b3b20757bc4c3e6a985d303708298f7559d6eaba",
+      "actualCodes": [],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "holdout-clean",
+        "runId": "74c79ef1-3292-40bc-bb1d-97f01c632325",
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "findings": [],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:42:18.197Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:42:18.197Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.19934299999999894,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "holdout-identity-absent",
+      "suite": "holdout",
+      "evaluationRunId": "45f67866-1e88-4192-a8da-0019c3cdc2a0",
+      "version": "v004",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "holdout-identity-absent",
+        "suite": "holdout",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "IDENTITY_MISSING"
+        ],
+        "expectedStatus": "PENDING_INFORMATION",
+        "description": "Ausencia de identidad con vigencia futura; no inferir documento presente"
+      },
+      "inputHash": "5f40d263cf29612e93a42f673eb548d1c511de680d9c61e653fbbea103957f73",
+      "actualCodes": [],
+      "omissions": [
+        "IDENTITY_MISSING"
+      ],
+      "falsePositives": [],
+      "statusMismatch": true,
+      "passed": false,
+      "status": "failed",
+      "output": {
+        "caseId": "holdout-identity-absent",
+        "runId": "2aeaff2b-9890-4f06-a404-ca3ae8e1a999",
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "findings": [],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"RFC\",\"CURP\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:42:18.197Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:42:18.197Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.16496299999994335,
+      "error": null,
+      "partialExecution": null
+    }
+  ]
+}

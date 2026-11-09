@@ -46,9 +46,42 @@ Estas reglas no las puede cambiar Reflection, una skill ni un workflow generado:
 
 **Resultado de validación registrado:** seis pruebas activas pasaron, cero fallaron. La corrección aceptada fue del harness, no una mejora medida de detección financiera.
 
-## Próximo incremento propuesto — v003: documentos sintéticos y OCR
+### v003 — roles, skills y protocolo de sucesión
 
-Esta sección es una especificación de la siguiente iteración, no comportamiento implementado aún.
+Snapshot del contexto de desarrollo; no representa un sucesor financiero ejecutado.
+
+### Evaluación independiente del Sistema A — snapshots importados v006 y v007
+
+Fixtures separados, fecha de corte explícita, herramientas vinculadas al caso del servidor,
+evaluador por caso y persistencia en SQLite. El snapshot importado v007 documenta la carga explícita del entorno
+para pruebas reales. La evaluación local registrada pasa 10 de 13 casos; los fallos de
+presencia documental permanecen como evidencia, sin lección financiera aceptada.
+
+### Incremento documental actual — generación y acceso API comprobados
+
+- La clave autentica y una llamada Responses con `gpt-6-luna` terminó correctamente.
+- KYC y Verification completaron un caso real mediante Agents SDK; evidencia en el
+  run `8621a201-3b09-492d-bab5-007916d77e76` de v007. No implica evaluación real de toda la suite.
+- El modelo predeterminado anterior no estaba disponible. `.env.local` ahora configura
+  `OPENAI_DEFAULT_MODEL=gpt-6-luna`; no se versiona ese archivo ni su clave.
+- Seis expedientes documentales sintéticos, 24 páginas PDF y 24 PNGs. Escenarios:
+  completo, RFC contradictorio, vigencia vencida, domicilio ausente, ingreso sin dato
+  e ingresos contradictorios. Discovery, validation y holdout tienen IDs distintos.
+- Inputs y oráculos independientes registrados antes de renderizar. Texto visible
+  validado con pdftotext e inspección visual de todas las páginas.
+- Diseño original y marca visible SINTÉTICO — SIN VALIDEZ OFICIAL en cada página;
+  nombres inventados e identificadores DEMO inválidos para trámites oficiales.
+- OpenAI eligió únicamente color/layout de una lista cerrada. El render PDF/PNG fue
+  local y determinista; no se ejecutó código generado por el modelo.
+- Hashes, páginas, generador, suites y expectativas conservados en manifest y tabla
+  SQLite `synthetic_document_artifacts`. Los bytes se archivan con los fixtures.
+- **Pendiente:** agente OCR, exactitud por campo, casos ilegibles, integración de
+  extracción con KYC, Reflection, memoria y Builder. Verificar texto PDF no es OCR.
+
+## Especificación de documentos y OCR
+
+La generación documental descrita arriba ya existe. Las reglas de extracción y evaluación
+OCR que siguen son requisitos del próximo incremento; no resultados demostrados.
 
 ### Generación de documentos sintéticos
 
@@ -99,8 +132,8 @@ Después de implementar y revisar un incremento, crea un snapshot y registra la 
 
 ```bash
 python3 scripts/rsi_history.py snapshot --summary "Describe business-rule, OCR, harness, or skill change"
-python3 scripts/rsi_history.py test --version v003 --suite unit --mode offline
+python3 scripts/rsi_history.py test --version vNNN --suite unit --mode offline
 python3 scripts/rsi_history.py history
 ```
 
-El ejemplo de versión aplica cuando ya exista `v003`. Registra expectations antes de correr la suite y enlaza cualquier mejora con el run de validación. Usa `real` solo si se hizo una llamada real al modelo; usa `simulation` u `offline` para los otros modos.
+Sustituye `vNNN` por el snapshot recién creado. Registra expectations antes de correr la suite y enlaza cualquier mejora con el run de validación. Usa `real` solo si se hizo una llamada real al modelo; usa `simulation` u `offline` para los otros modos.

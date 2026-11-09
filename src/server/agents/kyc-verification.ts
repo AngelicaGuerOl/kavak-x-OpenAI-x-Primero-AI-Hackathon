@@ -2,7 +2,10 @@ import { Agent, run, tool } from '@openai/agents';
 import { z } from 'zod';
 import { AnalyzeResponseSchema, FindingSchema } from '@/contracts/case.schema';
 import type { AnalyzeResponse, Finding } from '@/contracts/case';
+import { SyntheticCaseSchema, evaluationDate, preparationStatus, type SyntheticCase } from '@/server/synthetic-case';
 import { createReviewItems } from '@/server/review-monitor';
+
+const agentModel = process.env.OPENAI_AGENT_MODEL || 'gpt-6-luna';
 
 const KycOutputSchema = z.object({
   documentKinds: z.array(z.string()),
@@ -14,17 +17,6 @@ const VerificationOutputSchema = z.object({
   findings: z.array(FindingSchema),
   summary: z.string(),
 });
-
-const SyntheticCaseSchema = z.object({
-  id: z.string(),
-  rfc: z.string(),
-  taxRfc: z.string(),
-  ineExpires: z.string(),
-  address: z.boolean(),
-  documents: z.array(z.string()),
-});
-type SyntheticCase = z.infer<typeof SyntheticCaseSchema>;
-const agentModel = process.env.OPENAI_AGENT_MODEL || 'gpt-6-luna';
 
 function parseCaseJson(caseJson: string): SyntheticCase {
   return SyntheticCaseSchema.parse(JSON.parse(caseJson));
@@ -39,24 +31,29 @@ export function listSyntheticDocuments(caseJson: string, onExecuted?: () => void
 }
 
 /** Synthetic evidence comparison; no external registry or service is contacted. */
-export function compareSyntheticCaseFields(caseJson: string, onExecuted?: () => void) {
+export function compareSyntheticCaseFields(caseJson: string, onExecuted?: () => void, asOf?: string) {
+  const date = evaluationDate(asOf);
   const record = parseCaseJson(caseJson);
   const findings: Finding[] = [];
   if (!record.address) findings.push({ code: 'ADDRESS_MISSING', severity: 'WARNING', message: 'Falta comprobante de domicilio', evidence: ['address=false en fixture sintético'], sourceIds: ['check_document_presence'] });
   if (record.rfc !== record.taxRfc) findings.push({ code: 'RFC_MISMATCH', severity: 'WARNING', message: 'RFC distinto entre solicitud y constancia fiscal simulada', evidence: ['RFC de solicitud y RFC fiscal no coinciden'], sourceIds: ['compare_shared_fields'] });
-  if (record.ineExpires < new Date().toISOString().slice(0, 10)) findings.push({ code: 'INE_EXPIRED', severity: 'WARNING', message: 'Identificación sintética vencida', evidence: [`vigencia=${record.ineExpires}`], sourceIds: ['check_document_expiry'] });
+  if (record.ineExpires < date) findings.push({ code: 'INE_EXPIRED', severity: 'WARNING', message: 'Identificación sintética vencida', evidence: [`vigencia=${record.ineExpires}`], sourceIds: ['check_document_expiry'] });
   const validatedFindings = z.array(FindingSchema).parse(findings);
   onExecuted?.();
   return { findings: validatedFindings };
 }
 
-export function createKycAgent(toolCalls: string[] = [], listedDocuments: string[][] = []) {
+export function createKycAgent(caseInput?: unknown, toolCalls: string[] = [], listedDocuments: string[][] = [], trace: AnalyzeResponse['agentTrace'] = []) {
+  // Capture an independent copy, never fields supplied by a model tool call.
+  const caseJson = caseInput === undefined ? undefined : JSON.stringify(SyntheticCaseSchema.parse(caseInput));
   const listDocuments = tool({
     name: 'list_synthetic_documents',
     description: 'List document kinds present in the supplied synthetic case.',
-    parameters: z.object({ caseJson: z.string() }),
-    execute: async ({ caseJson }) => {
+    parameters: z.object({}).strict(),
+    execute: async () => {
+      if (!caseJson) throw new Error('Missing server case context');
       const result = listSyntheticDocuments(caseJson);
+      trace.push({ agent: 'KYC', toolId: 'list_synthetic_documents', action: 'Listar documentos sintéticos', result: JSON.stringify(result), timestamp: traceTimestamp() });
       toolCalls.push('list_synthetic_documents');
       listedDocuments.push(result.documents);
       return JSON.stringify(result);
@@ -72,13 +69,17 @@ export function createKycAgent(toolCalls: string[] = [], listedDocuments: string
   });
 }
 
-export function createVerificationAgent(toolCalls: string[] = [], executedFindings: Finding[][] = []) {
+export function createVerificationAgent(caseInput?: unknown, toolCalls: string[] = [], executedFindings: Finding[][] = [], asOf?: string, trace: AnalyzeResponse['agentTrace'] = []) {
+  const caseJson = caseInput === undefined ? undefined : JSON.stringify(SyntheticCaseSchema.parse(caseInput));
+  const date = evaluationDate(asOf);
   const compareFields = tool({
     name: 'compare_synthetic_case_fields',
     description: 'Compare synthetic RFC values and check address presence and synthetic identity expiry.',
-    parameters: z.object({ caseJson: z.string() }),
-    execute: async ({ caseJson }) => {
-      const result = compareSyntheticCaseFields(caseJson);
+    parameters: z.object({}).strict(),
+    execute: async () => {
+      if (!caseJson) throw new Error('Missing server case context');
+      const result = compareSyntheticCaseFields(caseJson, undefined, date);
+      trace.push({ agent: 'VERIFICATION', toolId: 'compare_synthetic_case_fields', action: 'Contrastar evidencia sintética', result: JSON.stringify(result), timestamp: traceTimestamp() });
       toolCalls.push('compare_synthetic_case_fields');
       executedFindings.push(result.findings);
       return JSON.stringify(result);
@@ -95,6 +96,8 @@ export function createVerificationAgent(toolCalls: string[] = [], executedFindin
 }
 
 export class ModelUnavailableError extends Error {
+  runId?: string;
+  agentTrace: AnalyzeResponse['agentTrace'] = [];
   constructor(message: string) {
     super(message);
     this.name = 'ModelUnavailableError';
@@ -102,35 +105,42 @@ export class ModelUnavailableError extends Error {
 }
 
 function toSafeModelError(stage: string, error: unknown): ModelUnavailableError {
-  const cause = error instanceof Error ? error : new Error('Unknown model error');
   const details = error && typeof error === 'object' ? error as { status?: unknown; code?: unknown } : {};
   const status = typeof details.status === 'number' ? details.status : undefined;
   const code = typeof details.code === 'string' ? details.code : undefined;
-  const safeMessage = cause.message
-    .replace(/sk-[A-Za-z0-9_-]+/g, '[redacted]')
-    .replace(/Bearer\s+\S+/gi, 'Bearer [redacted]')
-    .slice(0, 240);
-  console.error('Agents SDK model request failed', { stage, name: cause.name, status, code, message: safeMessage });
-  const reason = code ?? (status ? `HTTP ${status}` : cause.name);
-  return new ModelUnavailableError(`${stage}: ${reason} — ${safeMessage}`);
+  const reason = code?.match(/^[a-zA-Z0-9_]+$/) ? code : (status ? `HTTP ${status}` : 'MODEL_REQUEST_FAILED');
+  console.error('Agents SDK model request failed', { stage, status, code: reason });
+  return new ModelUnavailableError(`${stage}: ${reason}`);
 }
 
 function traceTimestamp() {
   return new Date().toISOString();
 }
 
-export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResponse> {
+export async function analyzeWithAgents(caseInput: unknown, asOf?: string): Promise<AnalyzeResponse> {
+  const date = evaluationDate(asOf);
   const customerCase = SyntheticCaseSchema.parse(caseInput);
-  if (!process.env.OPENAI_API_KEY) throw new ModelUnavailableError('OPENAI_API_KEY no está configurada');
-
-  const caseJson = JSON.stringify(customerCase);
   const trace: AnalyzeResponse['agentTrace'] = [];
   const runId = crypto.randomUUID();
+  try {
+    if (!process.env.OPENAI_API_KEY) throw new ModelUnavailableError('OPENAI_API_KEY no está configurada');
+    return await executeAgents(customerCase, date, runId, trace);
+  } catch (error) {
+    if (error instanceof ModelUnavailableError) {
+      error.runId = runId;
+      error.agentTrace = structuredClone(trace);
+    }
+    throw error;
+  }
+}
+
+async function executeAgents(customerCase: SyntheticCase, date: string, runId: string, trace: AnalyzeResponse['agentTrace']): Promise<AnalyzeResponse> {
+  const caseJson = JSON.stringify(customerCase);
   const kycToolCalls: string[] = [];
   const listedDocuments: string[][] = [];
   let kyc;
   try {
-    kyc = await run(createKycAgent(kycToolCalls, listedDocuments), `Revisa este caso sintético de apertura de cuenta, lista los documentos y prepara verificaciones: ${caseJson}`);
+    kyc = await run(createKycAgent(customerCase, kycToolCalls, listedDocuments, trace), `Revisa este caso sintético de apertura de cuenta, lista los documentos y prepara verificaciones: ${caseJson}`);
   } catch (error) {
     throw toSafeModelError('KYC Agent', error);
   }
@@ -147,7 +157,6 @@ export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResp
     agent: 'KYC',
     action: 'Análisis de expediente sintético y preparación de verificaciones con OpenAI Agents SDK',
     result: kycOutput.summary,
-    ...(kycToolCalls.includes('list_synthetic_documents') ? { toolId: 'list_synthetic_documents' } : {}),
     timestamp: traceTimestamp(),
   });
 
@@ -156,8 +165,8 @@ export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResp
   let verification;
   try {
     verification = await run(
-      createVerificationAgent(verificationToolCalls, executedFindings),
-      `Contrasta la evidencia del caso sintético con las verificaciones preparadas por KYC: ${JSON.stringify(kycOutput)}. Caso: ${caseJson}`,
+      createVerificationAgent(customerCase, verificationToolCalls, executedFindings, date, trace),
+      `Contrasta la evidencia del caso sintético con las verificaciones preparadas por KYC: ${JSON.stringify(kycOutput)}. Fecha de evaluación: ${date}. Caso: ${caseJson}`,
     );
   } catch (error) {
     throw toSafeModelError('Verification Agent', error);
@@ -175,14 +184,11 @@ export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResp
     agent: 'VERIFICATION',
     action: 'Contraste de evidencia sintética con OpenAI Agents SDK',
     result: verificationOutput.summary,
-    ...(verificationToolCalls.includes('compare_synthetic_case_fields') ? { toolId: 'compare_synthetic_case_fields' } : {}),
     timestamp: traceTimestamp(),
   });
 
   const findings = z.array(FindingSchema).parse(verificationOutput.findings);
-  const status = findings.some((finding) => finding.code === 'ADDRESS_MISSING')
-    ? 'PENDING_INFORMATION'
-    : findings.length > 0 ? 'REQUIRES_REVIEW' : 'READY_FOR_HUMAN_REVIEW';
+  const status = preparationStatus(findings);
   return AnalyzeResponseSchema.parse({
     caseId: customerCase.id,
     runId,

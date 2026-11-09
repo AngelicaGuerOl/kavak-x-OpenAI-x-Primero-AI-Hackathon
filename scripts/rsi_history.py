@@ -130,7 +130,7 @@ def snapshot(args: argparse.Namespace) -> None:
     copy_tree(ROOT / "src" / "app" / "api", version_dir / "business_logic" / "src" / "app" / "api")
     copy_tree(ROOT / "tests", version_dir / "harness" / "tests")
     copy_tree(ROOT / "scripts", version_dir / "harness" / "scripts")
-    for filename in ("package.json", "package-lock.json", "vitest.config.mts", "AGENTS.md", "CONTRACTS.md"):
+    for filename in ("package.json", "package-lock.json", "vitest.config.mts", "tsconfig.json", "AGENTS.md", "CONTRACTS.md"):
         source = ROOT / filename
         if source.is_file():
             shutil.copy2(source, version_dir / "harness" / filename)

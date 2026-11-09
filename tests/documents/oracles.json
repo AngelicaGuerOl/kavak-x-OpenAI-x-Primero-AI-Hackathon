@@ -1,0 +1,736 @@
+[
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedFindingCodes": [],
+    "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+    "absentDocumentKinds": [],
+    "fields": [
+      {
+        "documentId": "doc-discovery-clean-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Identificador de prueba",
+        "value": "ID-DEMO-D01",
+        "state": "extracted",
+        "evidenceText": "ID-DEMO-D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Vigencia",
+        "value": "2030-12-31",
+        "state": "extracted",
+        "evidenceText": "2030-12-31"
+      },
+      {
+        "documentId": "doc-discovery-clean-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC declarado",
+        "value": "RFC-DEMO-D01",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC en constancia",
+        "value": "RFC-DEMO-D01",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Domicilio",
+        "value": "Calle Imaginaria 000, Ciudad de Prueba",
+        "state": "extracted",
+        "evidenceText": "Calle Imaginaria 000, Ciudad de Prueba"
+      },
+      {
+        "documentId": "doc-discovery-clean-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Fecha de emisión",
+        "value": "2026-10-15",
+        "state": "extracted",
+        "evidenceText": "2026-10-15"
+      },
+      {
+        "documentId": "doc-discovery-clean-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D01"
+      },
+      {
+        "documentId": "doc-discovery-clean-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-discovery-clean-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Ingreso mensual",
+        "value": "18000.00 MXN",
+        "state": "extracted",
+        "evidenceText": "18000.00 MXN"
+      }
+    ],
+    "contradictions": []
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "evaluationDate": "2026-11-09",
+    "expectedFindingCodes": [
+      "RFC_MISMATCH"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "absentDocumentKinds": [],
+    "fields": [
+      {
+        "documentId": "doc-discovery-rfc-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D02"
+      },
+      {
+        "documentId": "doc-discovery-rfc-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Identificador de prueba",
+        "value": "ID-DEMO-D02",
+        "state": "extracted",
+        "evidenceText": "ID-DEMO-D02"
+      },
+      {
+        "documentId": "doc-discovery-rfc-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Vigencia",
+        "value": "2030-12-31",
+        "state": "extracted",
+        "evidenceText": "2030-12-31"
+      },
+      {
+        "documentId": "doc-discovery-rfc-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D02"
+      },
+      {
+        "documentId": "doc-discovery-rfc-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC declarado",
+        "value": "RFC-DEMO-D02",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-D02"
+      },
+      {
+        "documentId": "doc-discovery-rfc-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC en constancia",
+        "value": "RFC-DEMO-OTRO",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-OTRO"
+      },
+      {
+        "documentId": "doc-discovery-rfc-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D02"
+      },
+      {
+        "documentId": "doc-discovery-rfc-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Domicilio",
+        "value": "Calle Imaginaria 000, Ciudad de Prueba",
+        "state": "extracted",
+        "evidenceText": "Calle Imaginaria 000, Ciudad de Prueba"
+      },
+      {
+        "documentId": "doc-discovery-rfc-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Fecha de emisión",
+        "value": "2026-10-15",
+        "state": "extracted",
+        "evidenceText": "2026-10-15"
+      },
+      {
+        "documentId": "doc-discovery-rfc-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética D02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética D02"
+      },
+      {
+        "documentId": "doc-discovery-rfc-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-discovery-rfc-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Ingreso mensual",
+        "value": "18000.00 MXN",
+        "state": "extracted",
+        "evidenceText": "18000.00 MXN"
+      }
+    ],
+    "contradictions": []
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "evaluationDate": "2026-11-09",
+    "expectedFindingCodes": [
+      "INE_EXPIRED"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "absentDocumentKinds": [],
+    "fields": [
+      {
+        "documentId": "doc-validation-expired-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V01"
+      },
+      {
+        "documentId": "doc-validation-expired-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Identificador de prueba",
+        "value": "ID-DEMO-V01",
+        "state": "extracted",
+        "evidenceText": "ID-DEMO-V01"
+      },
+      {
+        "documentId": "doc-validation-expired-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Vigencia",
+        "value": "2026-10-31",
+        "state": "extracted",
+        "evidenceText": "2026-10-31"
+      },
+      {
+        "documentId": "doc-validation-expired-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V01"
+      },
+      {
+        "documentId": "doc-validation-expired-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC declarado",
+        "value": "RFC-DEMO-V01",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-V01"
+      },
+      {
+        "documentId": "doc-validation-expired-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC en constancia",
+        "value": "RFC-DEMO-V01",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-V01"
+      },
+      {
+        "documentId": "doc-validation-expired-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V01"
+      },
+      {
+        "documentId": "doc-validation-expired-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Domicilio",
+        "value": "Calle Imaginaria 000, Ciudad de Prueba",
+        "state": "extracted",
+        "evidenceText": "Calle Imaginaria 000, Ciudad de Prueba"
+      },
+      {
+        "documentId": "doc-validation-expired-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Fecha de emisión",
+        "value": "2026-10-15",
+        "state": "extracted",
+        "evidenceText": "2026-10-15"
+      },
+      {
+        "documentId": "doc-validation-expired-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V01"
+      },
+      {
+        "documentId": "doc-validation-expired-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-validation-expired-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Ingreso mensual",
+        "value": "18000.00 MXN",
+        "state": "extracted",
+        "evidenceText": "18000.00 MXN"
+      }
+    ],
+    "contradictions": []
+  },
+  {
+    "caseId": "doc-validation-no-address",
+    "suite": "validation",
+    "evaluationDate": "2026-11-09",
+    "expectedFindingCodes": [
+      "ADDRESS_MISSING"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "absentDocumentKinds": [
+      "ADDRESS"
+    ],
+    "fields": [
+      {
+        "documentId": "doc-validation-no-address-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V02"
+      },
+      {
+        "documentId": "doc-validation-no-address-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Identificador de prueba",
+        "value": "ID-DEMO-V02",
+        "state": "extracted",
+        "evidenceText": "ID-DEMO-V02"
+      },
+      {
+        "documentId": "doc-validation-no-address-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Vigencia",
+        "value": "2030-12-31",
+        "state": "extracted",
+        "evidenceText": "2030-12-31"
+      },
+      {
+        "documentId": "doc-validation-no-address-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V02"
+      },
+      {
+        "documentId": "doc-validation-no-address-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC declarado",
+        "value": "RFC-DEMO-V02",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-V02"
+      },
+      {
+        "documentId": "doc-validation-no-address-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC en constancia",
+        "value": "RFC-DEMO-V02",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-V02"
+      },
+      {
+        "documentId": "doc-validation-no-address-income",
+        "documentType": "INCOME",
+        "page": 3,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética V02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética V02"
+      },
+      {
+        "documentId": "doc-validation-no-address-income",
+        "documentType": "INCOME",
+        "page": 3,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-validation-no-address-income",
+        "documentType": "INCOME",
+        "page": 3,
+        "fieldName": "Ingreso mensual",
+        "value": "18000.00 MXN",
+        "state": "extracted",
+        "evidenceText": "18000.00 MXN"
+      }
+    ],
+    "contradictions": []
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "evaluationDate": "2026-11-09",
+    "expectedFindingCodes": [
+      "INCOME_AMOUNT_MISSING"
+    ],
+    "expectedStatus": "PENDING_INFORMATION",
+    "absentDocumentKinds": [],
+    "fields": [
+      {
+        "documentId": "doc-holdout-income-missing-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Identificador de prueba",
+        "value": "ID-DEMO-H01",
+        "state": "extracted",
+        "evidenceText": "ID-DEMO-H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Vigencia",
+        "value": "2030-12-31",
+        "state": "extracted",
+        "evidenceText": "2030-12-31"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC declarado",
+        "value": "RFC-DEMO-H01",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC en constancia",
+        "value": "RFC-DEMO-H01",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Domicilio",
+        "value": "Calle Imaginaria 000, Ciudad de Prueba",
+        "state": "extracted",
+        "evidenceText": "Calle Imaginaria 000, Ciudad de Prueba"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Fecha de emisión",
+        "value": "2026-10-15",
+        "state": "extracted",
+        "evidenceText": "2026-10-15"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H01",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H01"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-holdout-income-missing-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Ingreso mensual",
+        "value": null,
+        "state": "absent",
+        "evidenceText": "(sin dato)"
+      }
+    ],
+    "contradictions": []
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "evaluationDate": "2026-11-09",
+    "expectedFindingCodes": [
+      "INCOME_MISMATCH"
+    ],
+    "expectedStatus": "REQUIRES_REVIEW",
+    "absentDocumentKinds": [],
+    "fields": [
+      {
+        "documentId": "doc-holdout-income-conflict-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Identificador de prueba",
+        "value": "ID-DEMO-H02",
+        "state": "extracted",
+        "evidenceText": "ID-DEMO-H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-identity",
+        "documentType": "IDENTITY",
+        "page": 1,
+        "fieldName": "Vigencia",
+        "value": "2030-12-31",
+        "state": "extracted",
+        "evidenceText": "2030-12-31"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC declarado",
+        "value": "RFC-DEMO-H02",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-tax",
+        "documentType": "TAX_RECORD",
+        "page": 2,
+        "fieldName": "RFC en constancia",
+        "value": "RFC-DEMO-H02",
+        "state": "extracted",
+        "evidenceText": "RFC-DEMO-H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Domicilio",
+        "value": "Calle Imaginaria 000, Ciudad de Prueba",
+        "state": "extracted",
+        "evidenceText": "Calle Imaginaria 000, Ciudad de Prueba"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-address",
+        "documentType": "ADDRESS",
+        "page": 3,
+        "fieldName": "Fecha de emisión",
+        "value": "2026-10-15",
+        "state": "extracted",
+        "evidenceText": "2026-10-15"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-income",
+        "documentType": "INCOME",
+        "page": 4,
+        "fieldName": "Ingreso mensual",
+        "value": "18000.00 MXN",
+        "state": "extracted",
+        "evidenceText": "18000.00 MXN"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-income-proof",
+        "documentType": "INCOME",
+        "page": 5,
+        "fieldName": "Nombre",
+        "value": "Persona Sintética H02",
+        "state": "extracted",
+        "evidenceText": "Persona Sintética H02"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-income-proof",
+        "documentType": "INCOME",
+        "page": 5,
+        "fieldName": "Periodo",
+        "value": "2026-10",
+        "state": "extracted",
+        "evidenceText": "2026-10"
+      },
+      {
+        "documentId": "doc-holdout-income-conflict-income-proof",
+        "documentType": "INCOME",
+        "page": 5,
+        "fieldName": "Ingreso mensual",
+        "value": "9000.00 MXN",
+        "state": "extracted",
+        "evidenceText": "9000.00 MXN"
+      }
+    ],
+    "contradictions": [
+      {
+        "fieldName": "Ingreso mensual",
+        "documentIds": [
+          "doc-holdout-income-conflict-income",
+          "doc-holdout-income-conflict-income-proof"
+        ]
+      }
+    ]
+  }
+]

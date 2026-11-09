@@ -1,0 +1,84 @@
+{
+  "runId": "8621a201-3b09-492d-bab5-007916d77e76",
+  "version": "v005",
+  "suite": "discovery",
+  "requestedMode": "real",
+  "executionMode": "real",
+  "model": "gpt-6-luna",
+  "startedAt": "2026-11-09T22:50:15.971Z",
+  "finishedAt": "2026-11-09T22:50:23.533Z",
+  "suiteHash": "19ec41641b9e10c6387474065f947932d62ee4a87089cc6b30ffe8bf83b9476e",
+  "metric": {
+    "passed": 1,
+    "total": 1,
+    "completed": 1,
+    "unavailable": 0,
+    "omissions": 0,
+    "falsePositives": 0,
+    "statusMismatches": 0
+  },
+  "results": [
+    {
+      "caseId": "case-001",
+      "suite": "discovery",
+      "evaluationRunId": "8621a201-3b09-492d-bab5-007916d77e76",
+      "version": "v005",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "case-001",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [],
+        "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+        "description": "Expediente completo y consistente"
+      },
+      "inputHash": "fc8ceeba787e9b45494116bacde3843486fec14b0ec037e8eb9ac321a73fb607",
+      "actualCodes": [],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "case-001",
+        "runId": "5d9f2d84-fe30-4107-b300-f750c02d3a8d",
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "findings": [],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Listar documentos sintéticos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:50:16.937Z"
+          },
+          {
+            "agent": "KYC",
+            "action": "Análisis de expediente sintético y preparación de verificaciones con OpenAI Agents SDK",
+            "result": "El listado de documentos confirma IDENTIDAD, CURP, RFC, ADDRESS y TAX_RECORD; indica que hay comprobante de domicilio. El RFC y taxRfc proporcionados coinciden. Estas son comprobaciones pendientes para Verification, no una verificación oficial ni una decisión de elegibilidad crediticia.",
+            "timestamp": "2026-11-09T22:50:20.260Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Contrastar evidencia sintética",
+            "result": "{\"findings\":[]}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:50:21.496Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Contraste de evidencia sintética con OpenAI Agents SDK",
+            "result": "El comparador no devolvió hallazgos. Todo resultado queda sujeto a revisión humana.",
+            "timestamp": "2026-11-09T22:50:23.530Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "real",
+        "simulated": false
+      },
+      "durationMs": 7561.638338,
+      "error": null,
+      "partialExecution": null
+    }
+  ]
+}

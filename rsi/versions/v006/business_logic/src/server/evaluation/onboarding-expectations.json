@@ -1,0 +1,6 @@
+{
+  "case-001": [],
+  "case-002": ["RFC_MISMATCH"],
+  "case-003": ["INE_EXPIRED"],
+  "case-004": ["ADDRESS_MISSING"]
+}

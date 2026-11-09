@@ -1,5 +1,11 @@
 # Codex RSI History
 
+La integración de la PR #4 conservó los snapshots locales `v004` y `v005`. Los
+snapshots originalmente llamados `v004`, `v005` y `v006` en la rama de la PR se
+archivaron sin alterar sus contenidos como `v006`, `v007` y `v008`. Sus versiones,
+ejecuciones y artefactos se importaron a `history.sqlite` con esa correspondencia;
+las dos líneas de desarrollo siguen siendo ramas históricas distintas.
+
 This directory preserves each reviewed iteration of the Codex-assisted project.
 
 ## Hackathon rubric: two version tracks

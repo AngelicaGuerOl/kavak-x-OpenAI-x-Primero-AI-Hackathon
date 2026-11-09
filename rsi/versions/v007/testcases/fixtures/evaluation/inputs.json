@@ -1,0 +1,192 @@
+[
+  {
+    "id": "case-001",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "case-002",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "BBB010101BB2",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "case-003",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2020-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "case-004",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": false,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "discovery-identity-absent",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "validation-expiry-today",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2026-11-09",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "validation-combined",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "BBB010101BB2",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2026-11-08",
+    "address": false,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "validation-address-list",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "validation-clean",
+    "rfc": "CCC020202CC3",
+    "taxRfc": "CCC020202CC3",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2027-06-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "holdout-expiry-yesterday",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2026-11-08",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "holdout-rfc",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "DDD030303DD4",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "holdout-clean",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2026-11-10",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "holdout-identity-absent",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2029-12-31",
+    "address": true,
+    "documents": [
+      "RFC",
+      "CURP",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  }
+]

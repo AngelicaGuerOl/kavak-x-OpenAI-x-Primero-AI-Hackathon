@@ -1,0 +1,1 @@
+{"name":"sri-finance","private":true,"scripts":{"dev":"next dev","build":"next build","test":"vitest run"},"dependencies":{"@openai/agents":"*","next":"*","react":"*","react-dom":"*","zod":"*"},"devDependencies":{"@types/node":"*","@types/react":"*","@types/react-dom":"*","typescript":"*","vitest":"*"}}

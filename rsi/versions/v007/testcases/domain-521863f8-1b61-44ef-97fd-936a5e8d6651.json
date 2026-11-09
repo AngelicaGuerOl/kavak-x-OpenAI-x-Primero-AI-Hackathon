@@ -1,0 +1,324 @@
+{
+  "runId": "521863f8-1b61-44ef-97fd-936a5e8d6651",
+  "version": "v005",
+  "suite": "discovery",
+  "requestedMode": "simulation",
+  "executionMode": "simulation",
+  "model": null,
+  "startedAt": "2026-11-09T22:45:31.293Z",
+  "finishedAt": "2026-11-09T22:45:31.297Z",
+  "suiteHash": "ddc79c55ad73cf3b64cd344cd0587ad51d06a448bdf6cc59dd0eb6f399aaff27",
+  "metric": {
+    "passed": 4,
+    "total": 5,
+    "completed": 5,
+    "unavailable": 0,
+    "omissions": 1,
+    "falsePositives": 0,
+    "statusMismatches": 1
+  },
+  "results": [
+    {
+      "caseId": "case-001",
+      "suite": "discovery",
+      "evaluationRunId": "521863f8-1b61-44ef-97fd-936a5e8d6651",
+      "version": "v005",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "case-001",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [],
+        "expectedStatus": "READY_FOR_HUMAN_REVIEW",
+        "description": "Expediente completo y consistente"
+      },
+      "inputHash": "fc8ceeba787e9b45494116bacde3843486fec14b0ec037e8eb9ac321a73fb607",
+      "actualCodes": [],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "case-001",
+        "runId": "0d341df7-ba32-41cf-b16d-4dc2cce1768d",
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "findings": [],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:45:31.294Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:45:31.294Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 2.907838999999967,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "case-002",
+      "suite": "discovery",
+      "evaluationRunId": "521863f8-1b61-44ef-97fd-936a5e8d6651",
+      "version": "v005",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "case-002",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "RFC_MISMATCH"
+        ],
+        "expectedStatus": "REQUIRES_REVIEW",
+        "description": "RFC de solicitud distinto de constancia"
+      },
+      "inputHash": "94c5a23e4494febe607f39f2bdca3ca9973dba7935ed6b31f07d9d82b2231b0f",
+      "actualCodes": [
+        "RFC_MISMATCH"
+      ],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "case-002",
+        "runId": "3fc1b64f-e78f-41ab-926e-49a8145a93ab",
+        "status": "REQUIRES_REVIEW",
+        "findings": [
+          {
+            "code": "RFC_MISMATCH",
+            "severity": "WARNING",
+            "message": "RFC distinto entre solicitud y constancia fiscal simulada",
+            "evidence": [
+              "RFC de solicitud y RFC fiscal no coinciden"
+            ],
+            "sourceIds": [
+              "compare_shared_fields"
+            ]
+          }
+        ],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:45:31.296Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[{\"code\":\"RFC_MISMATCH\",\"severity\":\"WARNING\",\"message\":\"RFC distinto entre solicitud y constancia fiscal simulada\",\"evidence\":[\"RFC de solicitud y RFC fiscal no coinciden\"],\"sourceIds\":[\"compare_shared_fields\"]}],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:45:31.296Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.727245000000039,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "case-003",
+      "suite": "discovery",
+      "evaluationRunId": "521863f8-1b61-44ef-97fd-936a5e8d6651",
+      "version": "v005",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "case-003",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "INE_EXPIRED"
+        ],
+        "expectedStatus": "REQUIRES_REVIEW",
+        "description": "Identificación vencida"
+      },
+      "inputHash": "d72549e3cec554026c81f592e00a5d77570008eb915ea58c3e4fe6f8f56356f2",
+      "actualCodes": [
+        "INE_EXPIRED"
+      ],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "case-003",
+        "runId": "6fe7e35a-cc74-41ac-8d07-3945f70d5bb0",
+        "status": "REQUIRES_REVIEW",
+        "findings": [
+          {
+            "code": "INE_EXPIRED",
+            "severity": "WARNING",
+            "message": "Identificación sintética vencida",
+            "evidence": [
+              "vigencia=2020-01-01"
+            ],
+            "sourceIds": [
+              "check_document_expiry"
+            ]
+          }
+        ],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:45:31.297Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[{\"code\":\"INE_EXPIRED\",\"severity\":\"WARNING\",\"message\":\"Identificación sintética vencida\",\"evidence\":[\"vigencia=2020-01-01\"],\"sourceIds\":[\"check_document_expiry\"]}],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:45:31.297Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.29481699999996636,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "case-004",
+      "suite": "discovery",
+      "evaluationRunId": "521863f8-1b61-44ef-97fd-936a5e8d6651",
+      "version": "v005",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "case-004",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "ADDRESS_MISSING"
+        ],
+        "expectedStatus": "PENDING_INFORMATION",
+        "description": "Comprobante de domicilio ausente"
+      },
+      "inputHash": "1a1aa9d2a5a376976e612717a903b27cec8877eb40e99388a78642a849b19378",
+      "actualCodes": [
+        "ADDRESS_MISSING"
+      ],
+      "omissions": [],
+      "falsePositives": [],
+      "statusMismatch": false,
+      "passed": true,
+      "status": "passed",
+      "output": {
+        "caseId": "case-004",
+        "runId": "32924a09-92c3-4a0b-91ba-f6afb822c707",
+        "status": "PENDING_INFORMATION",
+        "findings": [
+          {
+            "code": "ADDRESS_MISSING",
+            "severity": "WARNING",
+            "message": "Falta comprobante de domicilio",
+            "evidence": [
+              "address=false en fixture sintético"
+            ],
+            "sourceIds": [
+              "check_document_presence"
+            ]
+          }
+        ],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"IDENTITY\",\"CURP\",\"RFC\",\"TAX_RECORD\"],\"addressPresent\":false}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:45:31.297Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[{\"code\":\"ADDRESS_MISSING\",\"severity\":\"WARNING\",\"message\":\"Falta comprobante de domicilio\",\"evidence\":[\"address=false en fixture sintético\"],\"sourceIds\":[\"check_document_presence\"]}],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:45:31.297Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.19013300000005984,
+      "error": null,
+      "partialExecution": null
+    },
+    {
+      "caseId": "discovery-identity-absent",
+      "suite": "discovery",
+      "evaluationRunId": "521863f8-1b61-44ef-97fd-936a5e8d6651",
+      "version": "v005",
+      "evaluationDate": "2026-11-09",
+      "expectation": {
+        "caseId": "discovery-identity-absent",
+        "suite": "discovery",
+        "evaluationDate": "2026-11-09",
+        "expectedCodes": [
+          "IDENTITY_MISSING"
+        ],
+        "expectedStatus": "PENDING_INFORMATION",
+        "description": "No existe documento de identidad aunque haya fecha de vigencia declarada"
+      },
+      "inputHash": "bf13bab0a64ad1bec6950b0adbcf3cefa84951a91ce4cda59fc22f7152f47ec3",
+      "actualCodes": [],
+      "omissions": [
+        "IDENTITY_MISSING"
+      ],
+      "falsePositives": [],
+      "statusMismatch": true,
+      "passed": false,
+      "status": "failed",
+      "output": {
+        "caseId": "discovery-identity-absent",
+        "runId": "45364f0d-9314-4a43-91d9-e0fd2b0db101",
+        "status": "READY_FOR_HUMAN_REVIEW",
+        "findings": [],
+        "agentTrace": [
+          {
+            "agent": "KYC",
+            "action": "Simulación: listar documentos",
+            "result": "{\"documents\":[\"CURP\",\"RFC\",\"ADDRESS\",\"TAX_RECORD\"],\"addressPresent\":true}",
+            "toolId": "list_synthetic_documents",
+            "timestamp": "2026-11-09T22:45:31.297Z"
+          },
+          {
+            "agent": "VERIFICATION",
+            "action": "Simulación: contrastar evidencia",
+            "result": "{\"findings\":[],\"evaluationDate\":\"2026-11-09\"}",
+            "toolId": "compare_synthetic_case_fields",
+            "timestamp": "2026-11-09T22:45:31.297Z"
+          }
+        ],
+        "productGuidance": [],
+        "executionMode": "simulation",
+        "simulated": true
+      },
+      "durationMs": 0.17963300000008076,
+      "error": null,
+      "partialExecution": null
+    }
+  ]
+}

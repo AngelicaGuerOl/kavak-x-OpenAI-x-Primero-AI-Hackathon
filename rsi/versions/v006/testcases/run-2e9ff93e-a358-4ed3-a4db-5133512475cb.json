@@ -1,0 +1,222 @@
+{
+  "run_id": "2e9ff93e-a358-4ed3-a4db-5133512475cb",
+  "version_id": "v004",
+  "started_at": "2026-11-09T22:42:37+00:00",
+  "finished_at": "2026-11-09T22:42:38+00:00",
+  "mode": "offline",
+  "command": [
+    "npm",
+    "test",
+    "--",
+    "--reporter=default",
+    "--reporter=json",
+    "--outputFile=/tmp/sri-vitest-tx667qy8.json"
+  ],
+  "summary": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 1
+  },
+  "test_results": [
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "suite": "system-a-unit",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "expected": "Vitest test passes: first technical milestone > instantiates KYC and Verification agents from the installed OpenAI Agents SDK",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 17.866994999999974
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "suite": "system-a-unit",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "expected": "Vitest test passes: first technical milestone > validates the synthetic KYC \u2192 Verification development flow against the shared response contract",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 10.60964899999999
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > rejects contradictory real/simulated response metadata",
+      "suite": "system-a-unit",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > rejects contradictory real/simulated response metadata",
+      "expected": "Vitest test passes: first technical milestone > rejects contradictory real/simulated response metadata",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 5.085546000000022
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "suite": "system-a-unit",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "expected": "Vitest test passes: first technical milestone > validates synthetic tool evidence and records execution only after successful tool work",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 2.0634129999999686
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "suite": "system-a-unit",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "expected": "Vitest test passes: first technical milestone > does not label a request as a real agent run when the API key is missing",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 7.935535999999956
+    },
+    {
+      "case_id": "first-milestone.test.ts::first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "suite": "system-a-unit",
+      "source_file": "tests/first-milestone.test.ts",
+      "description": "first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "expected": "Vitest test passes: first technical milestone > validates request JSON and returns CASE_NOT_FOUND before requiring model access",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 3.047698999999966
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > keeps discovery, validation and holdout IDs disjoint",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > keeps discovery, validation and holdout IDs disjoint",
+      "expected": "Vitest test passes: independent System A evaluator > keeps discovery, validation and holdout IDs disjoint",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 4.30666999999994
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > detects omissions, false positives and status differences independently",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > detects omissions, false positives and status differences independently",
+      "expected": "Vitest test passes: independent System A evaluator > detects omissions, false positives and status differences independently",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 7.2501439999999775
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > passes a clean control without sharing its oracle with the runner",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > passes a clean control without sharing its oracle with the runner",
+      "expected": "Vitest test passes: independent System A evaluator > passes a clean control without sharing its oracle with the runner",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 4.825178999999935
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > rejects wrong case identity, false mode and malformed output",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > rejects wrong case identity, false mode and malformed output",
+      "expected": "Vitest test passes: independent System A evaluator > rejects wrong case identity, false mode and malformed output",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 6.596496999999999
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > records model unavailability separately, without leaking upstream text",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > records model unavailability separately, without leaking upstream text",
+      "expected": "Vitest test passes: independent System A evaluator > records model unavailability separately, without leaking upstream text",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 1.7657140000000027
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > rejects empty suites, missing inputs and duplicate IDs before running",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > rejects empty suites, missing inputs and duplicate IDs before running",
+      "expected": "Vitest test passes: independent System A evaluator > rejects empty suites, missing inputs and duplicate IDs before running",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 3.6213809999999285
+    },
+    {
+      "case_id": "system-a-evaluator.test.ts::independent System A evaluator > uses a fixed cutoff even when the machine clock changes",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evaluator.test.ts",
+      "description": "independent System A evaluator > uses a fixed cutoff even when the machine clock changes",
+      "expected": "Vitest test passes: independent System A evaluator > uses a fixed cutoff even when the machine clock changes",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 6.664685000000077
+    },
+    {
+      "case_id": "system-a-evidence.test.ts::records independently registered System A evidence",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-evidence.test.ts",
+      "description": "records independently registered System A evidence",
+      "expected": "Vitest test passes: records independently registered System A evidence",
+      "status": "skipped",
+      "failure": null,
+      "duration_ms": null
+    },
+    {
+      "case_id": "system-a-history.test.ts::requires pre-registered oracles and appends queryable immutable domain evidence",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-history.test.ts",
+      "description": "requires pre-registered oracles and appends queryable immutable domain evidence",
+      "expected": "Vitest test passes: requires pre-registered oracles and appends queryable immutable domain evidence",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 43.42005400000005
+    },
+    {
+      "case_id": "system-a-runtime.test.ts::server-bound System A runtime (mocked model, offline) > does not allow model arguments or input mutation to replace server evidence",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-runtime.test.ts",
+      "description": "server-bound System A runtime (mocked model, offline) > does not allow model arguments or input mutation to replace server evidence",
+      "expected": "Vitest test passes: server-bound System A runtime (mocked model, offline) > does not allow model arguments or input mutation to replace server evidence",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 18.55281500000001
+    },
+    {
+      "case_id": "system-a-runtime.test.ts::server-bound System A runtime (mocked model, offline) > rejects tool execution with no server case context",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-runtime.test.ts",
+      "description": "server-bound System A runtime (mocked model, offline) > rejects tool execution with no server case context",
+      "expected": "Vitest test passes: server-bound System A runtime (mocked model, offline) > rejects tool execution with no server case context",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 1.6215660000000298
+    },
+    {
+      "case_id": "system-a-runtime.test.ts::server-bound System A runtime (mocked model, offline) > runs the two stages and records only executed tool work",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-runtime.test.ts",
+      "description": "server-bound System A runtime (mocked model, offline) > runs the two stages and records only executed tool work",
+      "expected": "Vitest test passes: server-bound System A runtime (mocked model, offline) > runs the two stages and records only executed tool work",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 8.855870000000095
+    },
+    {
+      "case_id": "system-a-runtime.test.ts::server-bound System A runtime (mocked model, offline) > rejects required-tool omission, malformed output and unsupported findings",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-runtime.test.ts",
+      "description": "server-bound System A runtime (mocked model, offline) > rejects required-tool omission, malformed output and unsupported findings",
+      "expected": "Vitest test passes: server-bound System A runtime (mocked model, offline) > rejects required-tool omission, malformed output and unsupported findings",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 4.586793999999941
+    },
+    {
+      "case_id": "system-a-runtime.test.ts::server-bound System A runtime (mocked model, offline) > preserves partial tool traces and sanitizes failed model requests",
+      "suite": "system-a-unit",
+      "source_file": "tests/system-a-runtime.test.ts",
+      "description": "server-bound System A runtime (mocked model, offline) > preserves partial tool traces and sanitizes failed model requests",
+      "expected": "Vitest test passes: server-bound System A runtime (mocked model, offline) > preserves partial tool traces and sanitizes failed model requests",
+      "status": "passed",
+      "failure": null,
+      "duration_ms": 2.575845999999956
+    }
+  ]
+}
