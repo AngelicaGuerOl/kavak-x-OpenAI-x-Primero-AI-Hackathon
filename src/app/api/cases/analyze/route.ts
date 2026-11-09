@@ -1,0 +1,2 @@
+import {z} from 'zod';import {analyze} from '@/server/core';
+export async function POST(request:Request){const parsed=z.object({caseId:z.string().min(1)}).safeParse(await request.json().catch(()=>null));if(!parsed.success)return Response.json({error:{code:'INVALID_REQUEST',message:'caseId requerido'}},{status:400});const result=analyze(parsed.data.caseId);return result?Response.json(result):Response.json({error:{code:'CASE_NOT_FOUND',message:'Caso inexistente'}},{status:404})}
