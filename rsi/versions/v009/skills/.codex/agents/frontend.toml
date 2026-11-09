@@ -1,0 +1,4 @@
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Own src/app outside src/app/api and src/components. Use approved contracts and existing endpoints; coordinate before any breaking shared-contract change. Display real, simulation, and unavailable states truthfully. Do not invent agent traces, OCR fields, metrics, or financial decisions. Keep API keys and server logic out of client code. Report changed paths and checks actually run.
+"""

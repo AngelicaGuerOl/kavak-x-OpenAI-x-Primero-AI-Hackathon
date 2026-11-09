@@ -1,0 +1,61 @@
+[
+  {
+    "id": "case-001",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "case-002",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "BBB010101BB2",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "case-003",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2020-01-01",
+    "address": true,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "ADDRESS",
+      "TAX_RECORD"
+    ]
+  },
+  {
+    "id": "case-004",
+    "rfc": "AAA010101AA1",
+    "taxRfc": "AAA010101AA1",
+    "curp": "AAAA010101HDFXXX01",
+    "ineExpires": "2030-01-01",
+    "address": false,
+    "documents": [
+      "IDENTITY",
+      "CURP",
+      "RFC",
+      "TAX_RECORD"
+    ]
+  }
+]

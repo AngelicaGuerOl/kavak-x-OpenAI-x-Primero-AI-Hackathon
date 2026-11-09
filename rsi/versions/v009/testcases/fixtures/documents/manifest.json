@@ -1,0 +1,512 @@
+[
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "documentId": null,
+    "path": "src/data/documents/artifacts/doc-discovery-clean.pdf",
+    "format": "pdf",
+    "pageCount": 4,
+    "sha256": "d26d72ab2cbc40bca2b1b93bcc06ee4f5aa8ce594478617f42333f9c3a7fd943",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "documentId": "doc-discovery-clean-identity",
+    "path": "src/data/documents/artifacts/doc-discovery-clean-1.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "7d75ad25a4992ac44123cf067152ef46065e44d55e385d4e5f01bad034d31d66",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "documentId": "doc-discovery-clean-tax",
+    "path": "src/data/documents/artifacts/doc-discovery-clean-2.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "54ed90e5dca68e3488b22a30e8d9f3f8d42906e8a5ed75a0648be97ab2f7c03b",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "documentId": "doc-discovery-clean-address",
+    "path": "src/data/documents/artifacts/doc-discovery-clean-3.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "83effc357882fd158cedbdabe3001d58d5d0ed740347153ed8ff762810a371a8",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-clean",
+    "suite": "discovery",
+    "documentId": "doc-discovery-clean-income",
+    "path": "src/data/documents/artifacts/doc-discovery-clean-4.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "734a1b2eddf9239996ea01c16396c729e71df921ea26eb6b3865a5a9f2bb97f8",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "documentId": null,
+    "path": "src/data/documents/artifacts/doc-discovery-rfc.pdf",
+    "format": "pdf",
+    "pageCount": 4,
+    "sha256": "ad5faefe13362ad97941e3d3e85d0b1825170f155b01a5252dfa46f021aba7a8",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "documentId": "doc-discovery-rfc-identity",
+    "path": "src/data/documents/artifacts/doc-discovery-rfc-1.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "c82239d699067db64afed81da2be3cf443e5c6762137e17e8fad636c06c61c46",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "documentId": "doc-discovery-rfc-tax",
+    "path": "src/data/documents/artifacts/doc-discovery-rfc-2.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "e3acb743aac60780f75d227b253f61cbf912e4cfebcb7e9fc5f1a1451dc16eb6",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "documentId": "doc-discovery-rfc-address",
+    "path": "src/data/documents/artifacts/doc-discovery-rfc-3.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "e1fe9ed2149c7594110d8bf66dcce807f5e380474cc18bb1ce7eeef2abb4699b",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-discovery-rfc",
+    "suite": "discovery",
+    "documentId": "doc-discovery-rfc-income",
+    "path": "src/data/documents/artifacts/doc-discovery-rfc-4.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "58a3f3ae444b07149bb1fcac0d4129bc42c4936362b6056f78316b36c62b8d40",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "documentId": null,
+    "path": "src/data/documents/artifacts/doc-validation-expired.pdf",
+    "format": "pdf",
+    "pageCount": 4,
+    "sha256": "45aa69c319009ac135d353cf3a1db61ce13870217c72e1f1d9878077ab4ed794",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "documentId": "doc-validation-expired-identity",
+    "path": "src/data/documents/artifacts/doc-validation-expired-1.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "d31586e59357f5acc667a3b94a119f6191fca24ce0a0006ebb4f30ebbb99d4a1",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "documentId": "doc-validation-expired-tax",
+    "path": "src/data/documents/artifacts/doc-validation-expired-2.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "c9c12a9afb4212c5f79329d431961b1229705022eb4022a2c0048f2fa298d4a3",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "documentId": "doc-validation-expired-address",
+    "path": "src/data/documents/artifacts/doc-validation-expired-3.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "ac900a04e5b1f46bbd67d2909cf188561c10bf7299962592ddec6f4cdcee334d",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-expired",
+    "suite": "validation",
+    "documentId": "doc-validation-expired-income",
+    "path": "src/data/documents/artifacts/doc-validation-expired-4.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "a3994ab45fb312e578007efdb0a25d0f958e4d4ee79e8e3b0e2a1649dd76dfcd",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-no-address",
+    "suite": "validation",
+    "documentId": null,
+    "path": "src/data/documents/artifacts/doc-validation-no-address.pdf",
+    "format": "pdf",
+    "pageCount": 3,
+    "sha256": "c66cd8a1521c5c717f4c3e131821f8835a4fb7e802aaced9100337e743a496fa",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-no-address",
+    "suite": "validation",
+    "documentId": "doc-validation-no-address-identity",
+    "path": "src/data/documents/artifacts/doc-validation-no-address-1.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "fa68b1cb4dec0b0015324537055add0e2b06ad3ddf674cca895e6047fa17f070",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-no-address",
+    "suite": "validation",
+    "documentId": "doc-validation-no-address-tax",
+    "path": "src/data/documents/artifacts/doc-validation-no-address-2.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "22ff5b5f1847a5031b9fa4ac36d040ef8bd24dba3bae69c16a99689ac5ff757a",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-validation-no-address",
+    "suite": "validation",
+    "documentId": "doc-validation-no-address-income",
+    "path": "src/data/documents/artifacts/doc-validation-no-address-3.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "574e0f4506337dc8c5bca1692fd4d990b88344b6e9a52420e3aef64e34aa03fc",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "documentId": null,
+    "path": "src/data/documents/artifacts/doc-holdout-income-missing.pdf",
+    "format": "pdf",
+    "pageCount": 4,
+    "sha256": "91c5036e26869ec5f62e4242dba535073923c63fc6f649615b169e9cc4675966",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-missing-identity",
+    "path": "src/data/documents/artifacts/doc-holdout-income-missing-1.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "09bd05dd6e7dea46af88b91b7c3fd58329edab6b3ba7030baa5b28a30039a954",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-missing-tax",
+    "path": "src/data/documents/artifacts/doc-holdout-income-missing-2.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "a76abf3ce3c62e55ef70ac027d76f664a729faeb1b9d44f78da057263d7ad354",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-missing-address",
+    "path": "src/data/documents/artifacts/doc-holdout-income-missing-3.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "9ee30b95bfca269ada6e837be1e37cecc78ad0f0961416c19f15fe1925ce0027",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-missing",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-missing-income",
+    "path": "src/data/documents/artifacts/doc-holdout-income-missing-4.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "2b82e0c98b4b42d05427d1be3b327d6bac5a80c6551947a807a7e281dd0b874b",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "documentId": null,
+    "path": "src/data/documents/artifacts/doc-holdout-income-conflict.pdf",
+    "format": "pdf",
+    "pageCount": 5,
+    "sha256": "9dfef42631dc1c0daf8e8370bc312f85a990972a4db78154377d4174fcc9a22d",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-conflict-identity",
+    "path": "src/data/documents/artifacts/doc-holdout-income-conflict-1.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "96eb6be6518f99e50e25b37c589d94c766a678df9ca0eb9fd3f69d8a20ac0b5e",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-conflict-tax",
+    "path": "src/data/documents/artifacts/doc-holdout-income-conflict-2.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "2dc8c3ce88b4e9cf12160b1d4d7bfe3631ad94a14474cd7bf5ad3cb45c7d6b46",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-conflict-address",
+    "path": "src/data/documents/artifacts/doc-holdout-income-conflict-3.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "c3937a7e0c84237e1cb1ba9508d86a05567602a96be27104267c911b13185d98",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-conflict-income",
+    "path": "src/data/documents/artifacts/doc-holdout-income-conflict-4.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "8231f8119bd76ed5968fcdc36b30c9d84d97d778260b7827527de47289c62f79",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  },
+  {
+    "caseId": "doc-holdout-income-conflict",
+    "suite": "holdout",
+    "documentId": "doc-holdout-income-conflict-income-proof",
+    "path": "src/data/documents/artifacts/doc-holdout-income-conflict-5.png",
+    "format": "png",
+    "pageCount": 1,
+    "sha256": "5786d0b771e546e53b2585899e2aa8c4b8bdc73380d4d2ed3b4cc5693cd48fdf",
+    "generatorVersion": "synthetic-documents-1",
+    "generationMode": "local_deterministic",
+    "appearanceModel": "gpt-6-luna",
+    "appearance": {
+      "accent": "navy",
+      "layout": "cards"
+    },
+    "textVerification": "passed"
+  }
+]
