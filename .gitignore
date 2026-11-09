@@ -2,3 +2,5 @@ node_modules/
 .next/
 .env.local
 *.tsbuildinfo
+__pycache__/
+*.pyc
