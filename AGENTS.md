@@ -25,6 +25,32 @@ Construir una demo de cinco horas para dos desarrolladores: agentes que revisan 
 
 Al implementar o revisar el ciclo RSI, usar la skill `$rsi-evaluation`. El resultado debe mostrar: errores del Sistema A medidos contra fixtures independientes; propuesta y validación; memoria versionada solo si se acepta; Sistema B ejecutable con herramientas aprobadas; comparación con y sin memoria en los mismos casos; trazas y versiones conservadas.
 
+## Skills y roles de Codex del proyecto
+
+- Skills reutilizables: `.agents/skills/`. Usa la skill que corresponda a planificación/contratos, frontend, backend, runtime de agentes, OCR, evaluación RSI, sucesores, seguridad financiera o historial.
+- Roles delegables: `.codex/config.toml` y `.codex/agents/*.toml`. Los roles de arquitectura, contratos, QA/RSI y seguridad son de solo lectura; frontend y backend tienen áreas de escritura separadas.
+- Los roles de Codex apoyan el trabajo de desarrollo. No cuentan como los agentes financieros ejecutados por la aplicación ni como trazas del Agents SDK.
+- Para el relevo de agentes financieros, sigue `AGENT_GENERATION_PROTOCOL.md`: el coordinador invoca un sucesor únicamente después de aceptar una mejora y validar su definición; máximo un handoff por caso y sin recursión.
+
+## Historial de versiones de Codex
+
+- Después de cada incremento revisado que cambie lógica de negocio, harness, instrucciones o skills, crea un snapshot inmutable con `python3 scripts/rsi_history.py snapshot --summary "..."`.
+- Corre el harness con `python3 scripts/rsi_history.py test --version vNNN --suite <suite> --mode <real|simulation|offline>` para guardar los resultados de cada caso en `rsi/history.sqlite` y un reporte dentro del snapshot.
+- Registra expectativas de casos de dominio antes de ejecutarlos con el comando `case`; nunca derives el oráculo de la salida del agente.
+- Registra propuestas y decisiones de mejora con `improvement`, enlazando fallos y la ejecución de validación. Acepta únicamente cambios con evidencia.
+- Cada snapshot incluye lógica, harness, skills/contexto y testcases; la base SQLite conserva versiones, hashes, ejecuciones, fallos y correcciones. No copies secretos ni `.env.local`.
+- No afirmes que Codex se reentrenó. El objetivo es mejorar de manera verificable el contexto, herramientas, políticas y código que Codex aplica en este repositorio.
+
 ## Verificación
 
 Ejecutar los checks pertinentes al cambio. Antes de declarar lista la demo, correr `npm run build`, `npm run test` y el recorrido de los tres endpoints con casos sintéticos. Si falta configuración o acceso al modelo, reportarlo con precisión; no afirmar que hubo ejecución real.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

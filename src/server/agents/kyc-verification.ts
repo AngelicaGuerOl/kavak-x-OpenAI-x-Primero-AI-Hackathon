@@ -97,6 +97,20 @@ export class ModelUnavailableError extends Error {
   }
 }
 
+function toSafeModelError(stage: string, error: unknown): ModelUnavailableError {
+  const cause = error instanceof Error ? error : new Error('Unknown model error');
+  const details = error && typeof error === 'object' ? error as { status?: unknown; code?: unknown } : {};
+  const status = typeof details.status === 'number' ? details.status : undefined;
+  const code = typeof details.code === 'string' ? details.code : undefined;
+  const safeMessage = cause.message
+    .replace(/sk-[A-Za-z0-9_-]+/g, '[redacted]')
+    .replace(/Bearer\s+\S+/gi, 'Bearer [redacted]')
+    .slice(0, 240);
+  console.error('Agents SDK model request failed', { stage, name: cause.name, status, code, message: safeMessage });
+  const reason = code ?? (status ? `HTTP ${status}` : cause.name);
+  return new ModelUnavailableError(`${stage}: ${reason} — ${safeMessage}`);
+}
+
 function traceTimestamp() {
   return new Date().toISOString();
 }
@@ -113,8 +127,8 @@ export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResp
   let kyc;
   try {
     kyc = await run(createKycAgent(kycToolCalls, listedDocuments), `Revisa este caso sintético de apertura de cuenta, lista los documentos y prepara verificaciones: ${caseJson}`);
-  } catch {
-    throw new ModelUnavailableError('No fue posible completar la ejecución real de KYC Agent con el modelo configurado');
+  } catch (error) {
+    throw toSafeModelError('KYC Agent', error);
   }
   const parsedKycOutput = KycOutputSchema.safeParse(kyc.finalOutput);
   if (!parsedKycOutput.success) throw new ModelUnavailableError('KYC Agent no produjo salida estructurada válida');
@@ -141,8 +155,8 @@ export async function analyzeWithAgents(caseInput: unknown): Promise<AnalyzeResp
       createVerificationAgent(verificationToolCalls, executedFindings),
       `Contrasta la evidencia del caso sintético con las verificaciones preparadas por KYC: ${JSON.stringify(kycOutput)}. Caso: ${caseJson}`,
     );
-  } catch {
-    throw new ModelUnavailableError('No fue posible completar la ejecución real de Verification Agent con el modelo configurado');
+  } catch (error) {
+    throw toSafeModelError('Verification Agent', error);
   }
   const parsedVerificationOutput = VerificationOutputSchema.safeParse(verification.finalOutput);
   if (!parsedVerificationOutput.success) throw new ModelUnavailableError('Verification Agent no produjo salida estructurada válida');

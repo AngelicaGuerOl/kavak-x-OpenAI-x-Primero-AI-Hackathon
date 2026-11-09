@@ -14,3 +14,7 @@ Usa esta skill para construir o verificar evidencia de automejora; no para cambi
 5. Ejecuta ambos workflows sobre exactamente la misma suite reservada del Sistema B. Calcula métricas desde resultados de ejecución, conserva resultados por caso y muestra diferencias sin atribuirlas a capacidades no probadas.
 
 La evidencia mínima de la demo incluye versión de memoria, versiones de workflows, conjuntos de casos, resultados por caso, métricas y trazas. Si no hay acceso a OpenAI, se puede probar el motor con fixtures deterministas, pero se debe identificar esa ejecución como simulación del flujo y dejar la ejecución real de agentes como pendiente.
+
+## Relevo al sucesor
+
+Después de validar una mejora, coordina con Workflow Builder la creación de definiciones sucesoras para los especialistas afectados. No llames ni declares una versión mejorada antes de que exista una lección aceptada y una definición validada. En la siguiente ejecución, el orquestador puede hacer un único handoff `G0 → G1`; G1 no vuelve a invocarse a sí mismo. Mantén baseline y sucesor en trazas enlazadas por caso y run ID. Consulta `AGENT_GENERATION_PROTOCOL.md` para el contrato de relevo.

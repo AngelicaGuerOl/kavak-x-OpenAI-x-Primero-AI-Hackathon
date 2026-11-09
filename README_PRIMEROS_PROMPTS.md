@@ -1,6 +1,6 @@
-# SRI Finance — primeros prompts de trabajo
+# SRI Finance — prompts de trabajo por etapas
 
-Este archivo contiene únicamente los prompts para iniciar la primera iteración con dos personas. El producto completo y sus objetivos están en [README.md](README.md); el orden de hitos y criterios está en [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
+Este archivo conserva los prompts de la primera iteración y añade los siguientes prompts, ordenados para continuar paso a paso con dos personas. El producto completo y sus objetivos están en [README.md](README.md); el orden de hitos y criterios está en [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
 ## Cómo trabajar paso a paso
 
@@ -77,7 +77,112 @@ AL CERRAR
 - Resume archivos modificados, pruebas ejecutadas y limitaciones. Detente después de este entregable; no avances a RSI o Sistema B.
 ```
 
-## Integración de esta primera iteración
+## Estado encontrado antes del siguiente incremento
+
+La primera iteración ya tiene una página para seleccionar y analizar cuatro expedientes, una ruta `POST /api/cases/analyze`, KYC y Verification implementados con OpenAI Agents SDK, herramientas sintéticas y una respuesta etiquetada como real solo tras completar ambas llamadas. La interfaz muestra modo, hallazgos, evidencia y trazas.
+
+Todavía no hay OCR ni archivos de documentos en los fixtures. `src/server/core.ts` mantiene Learning y Workflow como simulaciones: no hay evaluador OCR, aprendizaje persistente aceptado ni un Builder que genere e instancie un sistema sucesor. Los contratos de Learning y Workflow aún no cubren ese ciclo. Por eso, los siguientes prompts avanzan primero con documentos y OCR; no vuelven a pedir rehacer la primera pantalla o el flujo KYC → Verification.
+
+La última llamada de API registrada devolvió `429 credit_balance_exhausted`. Los prompts permiten avanzar con fixtures y evaluación local, pero exigen separar eso de una llamada OCR real y dejarla pendiente hasta que el acceso API funcione.
+
+## Prompt 3 — Acordar y congelar contratos del incremento OCR
+
+```text
+Lee README.md, AGENTS.md, CONTRACTS.md, IMPLEMENTATION_PLAN.md, README_REGLAS_NEGOCIO_VERSIONES.md y este README. Inspecciona el código actual antes de proponer cambios.
+
+OBJETIVO
+Preparar el siguiente incremento: documentos sintéticos con OCR verificable para el flujo de apertura de cuenta. No rehagas lo que ya existe. En este paso todavía no implementes OCR.
+
+ENTREGABLES
+- Propuesta de contratos Zod/TypeScript para el documento sintético, extracción por campo con evidencia y resultado de evaluación contra ground truth independiente.
+- Esquema de testcase que separe datos esperados del archivo/documento que verá el agente.
+- Decisión de cómo transportar un documento sintético pequeño al agente usando la versión instalada de OpenAI Agents SDK. Verifica la documentación actual del SDK antes de elegir la API.
+- Definición de estados para campo ausente, ilegible, contradictorio y extraído; nunca inferir un campo que no aparece.
+- Lista de cambios por archivo, criterios de aceptación y riesgos/costo del uso de imágenes.
+
+RESTRICCIONES
+- Solo lectura: no modifiques archivos.
+- Ground truth lo fija el testcase, nunca la salida del modelo.
+- Usar únicamente documentos ficticios marcados “SINTÉTICO — SIN VALIDEZ OFICIAL”; no usar plantillas oficiales, logos ni personas reales.
+- No afirmar que el API funciona: la última llamada devolvió `429 credit_balance_exhausted`.
+- Mantener revisión humana y todas las reglas financieras invariantes.
+
+CIERRE
+Entrega una propuesta concreta y breve para revisión conjunta. No continúes a implementación.
+```
+
+Revisen la propuesta entre ambas personas y congelen `src/contracts` antes de dividir el trabajo.
+
+## Prompt 4 — Persona backend: documentos sintéticos, OCR y evaluación
+
+```text
+Implementa solo el incremento OCR aprobado en el Prompt 3. Antes de editar, vuelve a inspeccionar el estado real y no repitas tareas ya realizadas.
+
+ALCANCE
+- Mantén KYC → Verification existente.
+- Crea un conjunto pequeño de testcases sintéticos con ground truth independiente, separado por discovery, validation y holdout.
+- Prepara un conjunto pequeño de testcases ficticios. OpenAI puede proponer escenarios y generar la apariencia visual de documentos sintéticos, pero primero fija y valida los valores esperados en fixtures independientes. El agente OCR recibe solo el artefacto, nunca el ground truth. Si la API no responde, conserva fixtures locales y registra el bloqueo.
+- Implementa OCR como extracción estructurada con Zod: documento, campo, valor, página/evidencia y estado (extraído, ausente, ilegible o contradictorio). No adivines valores ausentes.
+- Añade evaluador independiente que compare extracción con ground truth y mida exactitud por campo, omisiones y falsos positivos.
+- Registra hash del artefacto, testcase/suite, modelo/modo, extracción, resultado y trazas sin guardar secretos.
+- Conecta la extracción validada con KYC/Verification solo después de probarla de forma aislada.
+
+RESTRICCIONES
+- Modifica backend, fixtures y pruebas; no edites UI.
+- Respeta los contratos congelados; si falta algo, detente y solicita acuerdo antes de cambiarlo.
+- Documentos marcados “SINTÉTICO — SIN VALIDEZ OFICIAL”; no imites formatos oficiales.
+- No consultes servicios reales ni tomes decisiones crediticias.
+- Una simulación local no cuenta como ejecución real del modelo. Registra con precisión si API falló por saldo/configuración.
+
+VERIFICACIÓN
+- Ejecuta pruebas pertinentes y build; reporta comandos y resultados exactos.
+- Presenta un caso en que la extracción coincide y uno con error/ambigüedad si el fixture lo permite. No fuerces una mejora.
+- Detente al completar el OCR aislado e integrado; no implementes Reflection ni Builder todavía.
+```
+
+## Prompt 5 — Persona frontend: documentos y evidencia OCR
+
+```text
+Implementa la UI del incremento OCR usando únicamente los contratos ya congelados y la API acordada con backend. Revisa primero el estado real; la vista inicial de expedientes y análisis KYC → Verification ya existe.
+
+ENTREGABLES
+- En el expediente, mostrar los documentos sintéticos disponibles y permitir seleccionar uno para inspección.
+- Mostrar extracción OCR por campo junto a su evidencia y página; distinguir extraído, ausente, ilegible y contradictorio.
+- Mostrar el resultado de evaluación como comparación contra testcase solo en la vista de evaluación, nunca como contexto que se envía al agente.
+- Estados de carga/error y etiqueta clara de ejecución real frente a fixture/simulación.
+- Aviso de datos sintéticos y revisión humana.
+
+LÍMITES
+- Modifica solo `src/app` fuera de `src/app/api` y `src/components`.
+- No cambies contratos, fixtures o lógica de servidor.
+- No inventes texto reconocido, confianza, métricas ni documentos.
+- Si falta endpoint o campo de contrato, documenta la dependencia y coordina con backend; no simules una respuesta real.
+
+CIERRE
+- Ejecuta build si las dependencias están disponibles.
+- Resume archivos y verificaciones reales; detente al terminar esta UI.
+```
+
+## Prompt 6 — Integración OCR y cierre del incremento
+
+```text
+Integra el incremento OCR de SRI Finance. Lee el diff de ambas personas, los contratos y README_REGLAS_NEGOCIO_VERSIONES.md. No agregues alcance nuevo.
+
+COMPRUEBA
+1. Ground truth está definido antes e independientemente de cada salida OCR.
+2. Los documentos están identificados como sintéticos y no imitan documentos oficiales.
+3. El agente solo reporta extracción con evidencia y no inventa campos ausentes.
+4. El evaluador calcula resultados con las expectativas del testcase, no con la salida del modelo.
+5. Discovery, validation y holdout son conjuntos separados.
+6. La UI etiqueta con precisión llamadas reales, resultados locales y errores de API.
+7. KYC/Verification solo consumen extracción validada; decisiones finales siguen con revisión humana.
+
+Ejecuta las pruebas y build pertinentes. Si hay acceso API, ejecuta al menos un OCR real y registra la traza sin datos sensibles. Si no, deja claro que la evidencia es local y que la llamada real sigue pendiente. Corrige defectos del incremento, registra la versión con SQLite y actualiza README_REGLAS_NEGOCIO_VERSIONES.md con solo lo implementado y comprobado. No afirmes mejora si los resultados no la muestran. Entrega archivos cambiados, verificaciones y pendientes.
+```
+
+Después de revisar el incremento OCR, continúen con los hitos de Reflection/memoria y Builder/Sistema B de `IMPLEMENTATION_PLAN.md`. Congelen los contratos correspondientes antes de abrir trabajo paralelo para esos hitos.
+
+## Integración de la primera iteración
 
 Cuando ambos terminen, revisen juntos:
 
@@ -87,4 +192,4 @@ Cuando ambos terminen, revisen juntos:
 4. Falta de API key se entiende como bloqueo de ejecución real y no como fallo oculto.
 5. No hay aprobación/rechazo crediticio ni verificaciones oficiales.
 
-Después de esta revisión se define el siguiente incremento (por ejemplo, fixtures y evaluación independiente). Este archivo no pretende reemplazar los prompts de hitos posteriores.
+Esta lista mantiene separada la primera iteración ya existente de los siguientes incrementos. Al completar OCR, agreguen prompts de Reflection/memoria y Builder/Sistema B a partir de la evidencia y contratos reales de esa etapa; no los implementen antes.

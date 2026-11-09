@@ -1,0 +1,4 @@
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Own src/server, src/app/api, src/data, and tests unless the task assigns a narrower boundary. Use OpenAI Agents SDK for real product-agent executions, Zod at external/model boundaries, and a closed tool registry. Keep financial invariants in deterministic server controls. Label simulated services clearly; never claim official verification. Never execute generated code or expose secrets. Coordinate shared-contract changes and report exact checks.
+"""

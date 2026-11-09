@@ -4,11 +4,31 @@ Este plan convierte el alcance de [README.md](README.md) en una secuencia de tra
 
 ## Resultado que buscamos
 
-Una demo reproducible, ejecutada con el OpenAI Agents SDK, que recorra el ciclo completo:
+Una demo reproducible que muestre cómo Codex usa fallos medidos para mejorar las instrucciones, políticas y el harness que aplica al construir sistemas financieros sucesores:
 
-**Sistema A (apertura de cuenta) → evaluación independiente → fallo observado → Reflection propone una política ejecutable → validación en casos nuevos → memoria versionada → Builder produce un `AgentSystemDefinition` → backend instancia y ejecuta Sistema B (preparación automotriz) → comparación con y sin memoria sobre los mismos casos → dashboard con trazas reales.**
+**Generación 0 (apertura de cuenta) → evaluación independiente → fallo observado → lección ejecutable → validación en casos distintos → memoria versionada → Builder crea Generación 1 (preparación automotriz) → ejecución y comparación sobre el mismo conjunto de evaluación → evidencia guardada en SQLite.**
 
-La aceptación principal exige trazas reales de múltiples agentes ejecutados con OpenAI Agents SDK, y que Builder genere e instancie el sistema B para ejecutarlo. La simulación determinista solo es respaldo para desarrollar y depurar; nunca se presenta como evidencia de agentes de IA reales. Si no hay acceso al modelo, se declara el hito real bloqueado y la demo como simulada/incompleta respecto del criterio principal.
+La rúbrica evalúa por igual impacto, aplicación de Codex, uso creativo de habilidades y demostración. Codex es el agente de desarrollo: contexto versionado, planes, delegación read-only, harness, skills/políticas y correcciones comprobadas muestran cómo se aplicó. Esto no modifica ni reentrena los pesos del modelo. Los agentes de SRI Finance son los agentes del producto y deben ejecutarse con OpenAI Agents SDK en la demo principal; la API key y saldo API son necesarios para esas llamadas. Codex puede seguir trabajando en el repositorio sin la API key.
+
+La aceptación principal para RSI es que una falla observada provoque un cambio ejecutable y validado que el Builder herede al generar y ejecutar un sucesor funcional mediante Agents SDK. El sistema inicial y su sucesor se comparan sobre los mismos casos semánticos de evaluación. El modo local/determinista sirve para desarrollar y depurar, pero no cuenta como evidencia de ejecución real de agentes en la demo principal.
+
+### Cadena de generaciones para la demo
+
+- **Generación 0:** revisión de apertura de cuenta; ejecutar casos sintéticos y dejar que el evaluador revele fallos reales. Contradicciones entre campos y reenvíos duplicados son hipótesis para probar, no fallos que se deban dar por ciertos.
+- **Lección 1:** Reflection/Codex convierte un fallo observado en un patch ejecutable, crea una prueba y valida en ejemplos distintos. La lección se acepta o rechaza con evidencia.
+- **Generación 1:** Builder produce preparación automotriz y hereda el patch aceptado. Debe correr y exponer las reglas y herramientas que heredó.
+- **Generación 2, opcional:** solo si Gen1 descubre otro fallo real y hay tiempo; puede ser preparación de tarjetas que hereda lecciones aceptadas. No inventar una segunda lección para completar la historia.
+
+El dashboard enseña ejecución/fallo inicial, lección con su fuente, el cambio ejecutable del sucesor, resultados antes/después sobre los mismos casos y qué sigue fallando.
+
+### Evidencia de uso de Codex (25 %)
+
+- `AGENTS.md` fija contexto, convenciones, límites y verificaciones.
+- Plan Mode y briefs de subagentes read-only reducen incertidumbre antes de implementar.
+- Goal Mode mantiene el objetivo entre hitos y permite ajustar alcance con evidencia.
+- Skills y harness se versionan junto con lógica y testcases.
+- `rsi/history.sqlite` muestra qué falló, qué cambió y cómo respondió la validación.
+- La demo distingue acciones hechas por Codex, acciones del sistema financiero y decisiones/intervenciones humanas.
 
 ### Alcance cerrado del MVP: cuatro agentes
 
@@ -38,18 +58,19 @@ Las funciones fiscales y de productos son módulos/herramientas reutilizables, n
 - `.codex/config.toml` sería configuración de proyecto ilustrativa; la configuración del workspace puede limitar o prevalecer sobre ella.
 - `~/.codex/AGENTS.md` sería contexto personal, no debe versionarse ni editarse como parte de este repositorio.
 
-## Hito 0 — Puerta de viabilidad SDK (minutos 0–15)
+## Hito 0 — Puerta de viabilidad de API/Agents SDK (minutos 0–15)
 
-**Responsable:** backend principal; frontend revisa contratos existentes en paralelo, sin cambiar su forma.
+**Responsable:** backend; frontend revisa el recorrido en paralelo.
 
-1. Instalar dependencias desde el lockfile y confirmar Node/npm.
-2. Confirmar si hay clave/modelo configurado sin imprimir ni copiar secretos.
-3. Ejecutar un smoke test real de `Agent` + `run` con un prompt pequeño; comprobar respuesta, duración y traza/metadata del SDK. No basta con importar el paquete.
-4. Guardar el resultado de viabilidad (éxito/fallo, modelo utilizado, causa; nunca la clave) y decidir modo real o modo de contingencia.
+1. Confirmar Node/dependencias y que `.env.local` carga `OPENAI_API_KEY` sin imprimirla.
+2. Ejecutar una llamada pequeña real con Agents SDK (`Agent` + `run`) y verificar respuesta del modelo.
+3. Ejecutar smoke test de KYC y Verification sobre un expediente sintético y confirmar herramientas/trazas reales.
+4. Registrar modo/modelo, resultado y errores sin guardar la clave.
+5. Ejecutar baseline local/harness y confirmar snapshot SQLite para conservar el estado inicial.
 
-**Criterio de salida:** llamada real al modelo confirmada. Si falla por clave, cuota, red o acceso al modelo, registrar la causa y probar resolución dentro de esta ventana; luego continuar construyendo, pero marcar explícitamente el criterio principal como pendiente.
+**Criterio de salida:** llamadas reales de KYC y Verification completadas mediante el SDK. Si falla por saldo/acceso/configuración, diagnosticarlo y registrarlo; continuar implementando lo independiente, pero la aceptación de demo real queda pendiente.
 
-**Estado comprobado en este repositorio:** instalado `@openai/agents` 0.21.0; las instancias `KYC Agent` y `Verification Agent` se construyen correctamente. No existe `OPENAI_API_KEY` en el entorno revisado, por lo que la llamada real al modelo no se pudo confirmar todavía. El endpoint responde `MODEL_UNAVAILABLE` en vez de etiquetar el simulador como ejecución real.
+**Estado comprobado en este repositorio:** la key de `.env.local` se leyó y la solicitud llegó a OpenAI, pero respondió `429 credit_balance_exhausted`. La conexión está configurada; falta saldo API en la organización de esa clave para comprobar una ejecución exitosa.
 
 ## Hito 0B — Preparación y reducción de incertidumbre (minutos 15–30)
 
@@ -77,6 +98,7 @@ Definir en `src/contracts` y documentar en `CONTRACTS.md`:
 - `AnalyzeRequest` / `AnalyzeResponse`: estado de preparación, hallazgos con evidencia y fuente, guía informativa, modo (`agent` o `simulation`), `runId` y traza ejecutada.
 - `LearningRunRequest` / `LearningRunResponse`: suite, fallos observados, propuestas, casos de descubrimiento y validación separados, decisión de aceptación/rechazo y versión de memoria.
 - `AgentSystemDefinition`: Zod schema versionado con `systemId`, objetivo, lista de agentes permitidos, objetivos por agente, instrucciones, `ApprovedToolId[]` por agente, workflow ordenado/dependencias, política de generación aplicada y `memoryVersion`.
+- Persistencia en SQLite separa iteraciones de Codex (`v001`, `v002`, etc.) de generaciones de producto (`G0`, `G1`, `G2`): cada generación enlaza definición, padre, lecciones heredadas, casos y ejecuciones.
 - `GenerateWorkflowRequest` / `GenerateWorkflowResponse`: suite fija, definiciones baseline/learned, resultados de instanciación/ejecución, resultados por caso, métricas calculadas, versiones y trazas.
 - Errores HTTP consistentes: `INVALID_REQUEST`, `CASE_NOT_FOUND`, `MODEL_UNAVAILABLE`, `INTERNAL_ERROR`.
 - Estados nunca significan aprobación/rechazo crediticio. Todo resultado del simulador identifica `simulated: true`.
@@ -113,7 +135,7 @@ Frontend en paralelo:
 **Responsable principal:** backend; QA revisa independencia de oráculos; frontend implementa Learning Lab en paralelo.
 
 1. Mantener suites separadas: descubrimiento, validación y test final reservado.
-2. Comparar ejecuciones reales de Sistema A con expectativas independientes.
+2. Comparar ejecuciones reproducibles de Sistema A con expectativas independientes; registrar si el modo fue LLM o local/determinista.
 3. Reflection produce `GenerationPolicyPatch` estructurado, no texto libre: operaciones permitidas y parámetros acotados para modificar estrategia/pasos del Builder.
 4. Aplicar el patch sobre la política de generación en un entorno candidato. Rechazar claves/opciones desconocidas.
 5. Validar en casos distintos; aceptar solo si los resultados medidos justifican el cambio y no rompe invariantes.
@@ -123,17 +145,20 @@ Frontend en paralelo:
 
 **Criterio de salida:** el Learning Lab muestra métricas obtenidas al ejecutar fixtures, fallo, propuesta, validación y versión aceptada/rechazada. No fabrica aprendizaje si no hubo error real.
 
-## Hito 4 — Builder y ejecución del Sistema B (minutos 225–270)
+## Hito 4 — Builder y ejecución de Generación 1 (minutos 225–270)
 
 **Responsable principal:** backend; frontend desarrolla Process Factory.
 
-1. Builder recibe requisitos automotrices y política baseline o patch de memoria aceptado.
+1. Builder recibe requisitos automotrices y un patch aceptado a partir de evidencia medida.
 2. Produce `AgentSystemDefinition` validado por Zod: nuevos agentes definidos desde roles aprobados, objetivos, instrucciones, herramientas autorizadas y workflow.
-3. Backend instancia cada agente como `Agent` del SDK, resolviendo herramientas desde el registro cerrado; rechaza herramientas o roles no autorizados.
+3. Backend instancia la definición como sistema ejecutable con Agents SDK, resolviendo roles y herramientas desde el registro cerrado; rechaza herramientas o roles no autorizados. El modo local puede depurar el workflow, pero no satisface la ejecución real requerida para la demo principal.
 4. Ejecuta la definición para preparar financiamiento automotriz. No emite aprobaciones.
-5. Ejecuta baseline y learned en exactamente los mismos casos reservados; conserva definiciones, trazas reales, resultados y métricas.
+5. Ejecuta el sistema inicial y el sucesor sobre los mismos casos semánticos; conserva definiciones, modo, resultados por caso y métricas.
+6. Conserva trazas reales de Builder y agentes del sistema sucesor. Si una prueba local usa el motor determinista, se etiqueta como tal y queda fuera de la comparación de ejecución LLM.
+7. Registrar la relación de sucesión en SQLite: generación padre, generación nueva, versión/policy patch heredado y conjunto de casos usado.
+7. Registrar la relación de sucesión en SQLite: generación padre, generación nueva, versión/policy patch heredado y conjunto de casos usado.
 
-**Criterio de salida:** se observa una diferencia verificable entre procesos y resultados, o se reporta honestamente que no hubo aprendizaje válido. No se atribuye mejora si las métricas no la prueban.
+**Criterio de salida:** Builder generó e instancia un sucesor ejecutable que hereda la lección validada; la comparación usa los mismos casos y modo declarado. No se atribuye mejora si las métricas no la prueban.
 
 ## Hito 5 — Integración, verificación y demo (minutos 270–300)
 
@@ -153,17 +178,17 @@ Conectar `POST /api/cases/analyze`, `POST /api/learning/run` y `POST /api/workfl
 
 **Responsables:** ambos. Ejecutar pruebas y build, recorrer análisis KYC/Verification, Learning y Factory; revisar modos, trazas, mismo holdout, invariantes, errores HTTP y que no haya secretos expuestos. Preparar demo reproducible de tres minutos.
 
-**Aceptación principal:** trazas de ejecución reales de al menos KYC y Verification mediante SDK, además de Builder ejecutando un `AgentSystemDefinition` generado por él mediante SDK en Sistema B. Si falta credencial/acceso, el reporte indica claramente que esta aceptación no se cumplió.
+**Aceptación principal:** trazas reales de KYC y Verification con Agents SDK; fallo reproducible; lección ejecutable validada con casos distintos; `AgentSystemDefinition` generado por Builder e instanciado/ejecutado con SDK como sucesor; comparación en los mismos casos; historial de versiones. La ejecución local se conserva como evidencia de harness, no como sustituto de las trazas LLM.
 
 ## Orden de prioridad si el tiempo aprieta
 
-1. Puerta de viabilidad real del SDK y contratos congelados.
-2. Dos agentes reales (KYC + Verification) y traza con evidencia de herramientas.
-3. Evaluador independiente y división discovery/validation/test.
-4. Reflection patch ejecutable, validado y guardado como memoria.
-5. Builder produce e instancia el sistema B por SDK.
-6. Comparación honesta con/sin memoria sobre el mismo holdout.
-7. UI para enseñar resultados y trazas.
+1. Contratos y harness reproducible con expectativas independientes.
+2. Sistema inicial con falla medida y explicable.
+3. Lección ejecutable de Reflection, validada en casos distintos.
+4. Builder produce e instancia un sucesor que hereda la lección.
+5. Comparación honesta en los mismos casos, modo y métricas.
+6. UI que enseña la secuencia y la aplicación de Codex.
+7. Generación 2 si el sucesor descubre otro fallo real.
 8. Refinamiento visual y amplitud de productos.
 
 ## Uso de Codex en este proyecto
@@ -179,20 +204,20 @@ Conectar `POST /api/cases/analyze`, `POST /api/learning/run` y `POST /api/workfl
 
 | Tiempo | Backend / agentes | Frontend |
 | --- | --- | --- |
-| 00:00–00:15 | Smoke test real de Agents SDK; confirmar API key/modelo | Leer pantallas y contrato actual; preparar dudas, sin cambiar contrato |
+| 00:00–00:15 | Smoke test API real, Agents SDK, KYC/Verification y baseline SQLite | Leer rúbrica, contexto y recorrido UI; preparar dudas sin cambiar contrato |
 | 00:15–00:30 | Data/API y arquitectura de tools/agentes (read-only) | UI/inbox y estados (read-only); ambos comparten decisiones |
 | 00:30–00:45 | Proponer schemas Zod/API | Revisar y aceptar contrato; **freeze al minuto 45** |
-| 00:45–02:30 | KYC, Verification, herramientas simuladas, trazas y endpoints | Layout, Cases, detalle, timeline conectados a contrato congelado |
-| 02:30–03:45 | Evaluador, Reflection patch, validación y memoria versionada | Learning Lab con resultados de API reales |
-| 03:45–04:30 | Builder, AgentSystemDefinition, instancia y ejecución del sistema B | Process Factory y comparación sobre mismas filas de resultados |
-| 04:30–05:00 | Pruebas, build y demo end-to-end; corregir fallos críticos | Integración final, estados de error/modo, demo y revisión visual |
+| 00:45–02:30 | Sistema inicial ejecutable, herramientas simuladas, trazas y endpoints | Layout, Cases, detalle y timeline conectados al contrato |
+| 02:30–03:45 | Evaluador, Reflection patch, validación y memoria versionada | Learning Lab con resultados medidos y evidencia de Codex |
+| 03:45–04:30 | Builder, AgentSystemDefinition, instancia y ejecución del sucesor | Process Factory y comparación sobre los mismos casos |
+| 04:30–05:00 | Pruebas/build, revisar evidencia/historial y preparar demo 3 min + Q&A 2 min | Integración, comparación visual y explicación de Codex/límites |
 
-No se amplía el alcance para recuperar tiempo perdido. Si el smoke test real no pasa, dedicar un bloque corto a diagnosticar configuración; continuar con código tipado, dejando claro que el criterio principal de agentes reales permanece pendiente hasta ejecutar llamadas reales.
+No se amplía el alcance para recuperar tiempo perdido. Si runtime API no está habilitado, continuar el trabajo de Codex/harness que no dependa de ella, registrar el bloqueo y no presentar la demo como ejecución real hasta resolverlo.
 
 ## Riesgos y decisiones que deben quedar visibles
 
-- Si no hay API key o acceso al modelo, la demo puede probar el motor en modo determinista, pero no se presenta como ejecución real de agentes.
-- Para demostrar RSI sin resultados inventados, los fixtures de descubrimiento deben contener un fallo conocido del baseline; los casos de validación y prueba deben ser distintos.
+- Si no hay saldo API, Codex aún puede ejecutar harness, registrar fallos y modificar lógica/skills localmente; la demo de agentes de la aplicación permanece incompleta respecto al criterio de ejecución real.
+- No se fuerza un fallo conocido. Se prueban escenarios exploratorios y el evaluador identifica fallos observados; validación y test final usan casos distintos de discovery.
 - No hay conexión real con Buró, SAT, INE ni bancos. Los nombres de herramientas reflejan simulaciones.
 - No se desarrollará aprobación crediticia, scoring sensible ni ejecución de código generado.
 - No guardar datos reales, secretos ni trazas que contengan información sensible.

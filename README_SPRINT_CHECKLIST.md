@@ -4,11 +4,13 @@ Guía operativa para construir SRI Finance por incrementos con dos personas y un
 
 ## Objetivo de la demo
 
+La rúbrica da 25 % a impacto, aplicación de Codex, habilidades y demo. Codex es el agente de desarrollo: mejora el contexto, harness, skills/políticas y código del repositorio; esto no reentrena el modelo. Los sistemas financieros sucesores son el producto que Codex construye.
+
 Demostrar una cadena verificable y honesta:
 
-**Sistema A (apertura de cuenta) → agentes KYC y Verification → evaluación independiente → Reflection propone política ejecutable → validación en casos distintos → memoria versionada → Builder crea un `AgentSystemDefinition` → backend instancia y ejecuta Sistema B (preparación automotriz) → comparación con y sin memoria en la misma suite reservada.**
+**Gen 0 (apertura de cuenta) → KYC/Verification → evaluación independiente → falla observada → patch ejecutable → validación en casos distintos → memoria versionada → Builder crea Gen 1 (preparación automotriz) → ejecución y comparación sobre los mismos casos → SQLite. Gen 2 (tarjetas) es opcional si Gen 1 revela otro fallo real.**
 
-La aceptación principal requiere trazas reales de múltiples agentes con OpenAI Agents SDK y que Builder genere y ejecute Sistema B. Una ejecución determinista ayuda a desarrollar y depurar, pero no cuenta como evidencia de agentes reales. Todos los expedientes y verificaciones del MVP son sintéticos/simulados, y todo resultado queda sujeto a revisión humana.
+La aceptación principal es que agentes reales del OpenAI Agents SDK ejecuten el sistema inicial, que el sucesor herede una lección validada y se compare con el sistema inicial en los mismos casos. La API no se necesita para que Codex trabaje ni para ejecutar el harness local, pero sí para las llamadas LLM de la app y la evidencia principal de agentes reales. El modo determinista sirve para depuración y no se presenta como traza LLM. Todos los expedientes son sintéticos y requieren revisión humana.
 
 ## Estado inicial observado
 
@@ -19,7 +21,9 @@ Al comenzar este checklist:
 - [ ] El frontend funcional aún no está construido; `src/components` no existe y la página actual necesita integración del recorrido.
 - [ ] No está terminado el evaluador independiente, Reflection, la memoria ejecutable ni la persistencia versionada.
 - [ ] No está terminado `AgentSystemDefinition`, la instancia dinámica de agentes ni la ejecución comparable de Sistema B.
-- [ ] La llamada real al modelo debe confirmarse con una clave local; la instanciación del SDK por sí sola no demuestra una ejecución real.
+- [ ] Las llamadas LLM de la aplicación requieren API disponible; esto no bloquea el trabajo de Codex ni la evaluación local, pero cualquier modo determinista debe etiquetarse.
+- [ ] En la última prueba, la API respondió `credit_balance_exhausted`; confirmar saldo en la organización de la clave antes de reclamar una ejecución real.
+- [ ] Los snapshots `v001/v002` registran iteraciones de Codex/harness, no son todavía generaciones de producto Gen0/Gen1.
 
 Antes de trabajar, revisar `git status` e integrar cualquier cambio pendiente. No sobrescribir ni descartar trabajo de la otra persona.
 
@@ -35,22 +39,22 @@ Antes de trabajar, revisar `git status` e integrar cualquier cambio pendiente. N
 
 ## Sprint de cinco horas
 
-### 00:00–00:15 — Puerta de viabilidad de OpenAI Agents SDK
+### 00:00–00:15 — Puerta de viabilidad de API y Agents SDK
 
 **Backend**
 
-- [ ] Confirmar versión instalada de `@openai/agents` y Node.
-- [ ] Comprobar si `OPENAI_API_KEY` está configurada sin imprimirla.
-- [ ] Ejecutar un smoke test real: crear `Agent`, llamar `run` y recibir salida del modelo.
-- [ ] Guardar resultado sin datos sensibles: pasó/falló, modelo, duración aproximada y causa del fallo.
-- [ ] Si no pasa, diagnosticar rápidamente configuración, acceso, cuota o red; marcar la ejecución real como pendiente.
+- [ ] Confirmar que `.env.local` carga la variable sin imprimirla.
+- [ ] Ejecutar una llamada real pequeña con `Agent` + `run`.
+- [ ] Correr KYC y Verification con un caso sintético y comprobar herramientas/trazas reales.
+- [ ] Registrar resultado y error sin guardar la clave.
+- [ ] Ejecutar baseline local y confirmar snapshot/harness SQLite.
 
 **Frontend**
 
 - [ ] Leer README, plan, instrucciones y contrato vigente.
 - [ ] Identificar estados que necesita presentar el endpoint actual; no cambiar contratos aún.
 
-**Puerta de salida:** sabemos si habrá ejecución real del SDK en la demo. Una simulación no reemplaza este requisito.
+**Puerta de salida:** respuesta real del modelo y trazas de KYC/Verification. Si falla por saldo/acceso, registrar el bloqueo y continuar tareas independientes; no declarar cumplida la ejecución real.
 
 ### 00:15–00:30 — Revisión conjunta de alcance y contratos
 
@@ -128,14 +132,15 @@ Antes de trabajar, revisar `git status` e integrar cualquier cambio pendiente. N
 
 **Puerta de salida:** existe una decisión de memoria respaldada por evaluación reproducible, sea aceptación o rechazo.
 
-### 03:45–04:30 — Builder y Sistema B automotriz
+### 03:45–04:30 — Builder y Gen 1 automotriz
 
 **Backend/agentes**
 
 - [ ] Definir schema Zod de `AgentSystemDefinition`: ID/versión, objetivo, agentes, objetivos individuales, instrucciones, herramientas aprobadas, workflow/dependencias, política aplicada y memoria usada.
+- [ ] Registrar Gen0/Gen1 por separado de snapshots Codex; enlazar sucesor, lección, definición y resultados en SQLite.
 - [ ] Implementar Workflow Builder Agent para producir esa definición.
 - [ ] Rechazar roles, herramientas, dependencias o campos no permitidos.
-- [ ] Instanciar los agentes definidos como `Agent` del SDK y resolver herramientas desde el registro cerrado.
+- [ ] Instanciar la definición como sistema ejecutable con Agents SDK usando roles y herramientas del registro cerrado. El motor local ayuda a depurar, pero no sustituye la ejecución SDK de la demo.
 - [ ] Ejecutar el sistema generado en tareas de preparación automotriz con decisión final reservada a revisión humana.
 - [ ] Generar baseline sin memoria y learned con memoria aceptada.
 - [ ] Ejecutar las dos definiciones sobre exactamente los mismos casos reservados y conservar salida, métricas y trazas por caso.
@@ -146,7 +151,7 @@ Antes de trabajar, revisar `git status` e integrar cualquier cambio pendiente. N
 - [ ] Comparar baseline/learned con los mismos IDs de casos.
 - [ ] Mostrar cambios ejecutables de política y diferencias observadas; no afirmar mejora si las métricas no la respaldan.
 
-**Puerta de salida:** Builder generó y el backend ejecutó Sistema B mediante SDK; la comparación usa el mismo holdout.
+**Puerta de salida:** Builder generó y el backend ejecutó un sucesor que hereda la lección aceptada; comparación con los mismos casos y modo declarado.
 
 ### 04:30–05:00 — Integración final y demo
 
@@ -155,22 +160,38 @@ Antes de trabajar, revisar `git status` e integrar cualquier cambio pendiente. N
 - [ ] Integrar cambios y revisar `git diff`.
 - [ ] Ejecutar `npm test` y `npm run build`.
 - [ ] Recorrer desde la UI: Sistema A → evaluación/Reflection → Sistema B → comparación.
-- [ ] Confirmar que las trazas muestran agentes reales y herramientas efectivamente ejecutadas.
+- [ ] Confirmar que las trazas representan llamadas/herramientas efectivamente ejecutadas y que el modo (LLM o determinista) está correctamente indicado.
 - [ ] Confirmar separación entre discovery, validation y test final.
 - [ ] Verificar invariantes financieras, datos sintéticos y ausencia de secretos.
 - [ ] Preparar demo de tres minutos y notas del modo real/simulado.
 - [ ] Anotar limitaciones y cualquier criterio de aceptación que no se haya cumplido.
 
+## Demo: guion oficial de tres minutos
+
+- [ ] **0:00–0:40 — Sistema inicial:** problema en una frase, ejecutar caso, mostrar resultado esperado y falla realmente detectada.
+- [ ] **0:40–1:45 — Lección y sucesor:** enseñar evidencia, patch guardado, validación con casos distintos y cambio ejecutable heredado por Gen 1; ejecutar al sucesor.
+- [ ] **1:45–3:00 — Comparación y Codex:** correr ambas generaciones sobre los mismos casos, mostrar métricas reales, qué sigue fallando y cómo se usó Codex.
+- [ ] Preparar preguntas para dos minutos: mostrar ejecución, lección y cambio heredado; explicar qué resultado refutaría la mejora.
+- [ ] Aclarar qué código/contexto existía previamente y qué se creó en el hackathon.
+
+## Mapeo de rúbrica (25 % cada criterio)
+
+- [ ] **Impacto:** usuario/problema y métrica adecuada, como fallos por lote o detecciones correctas. No inventar ahorro de tiempo.
+- [ ] **Aplicación de Codex:** enseñar AGENTS.md, planificación, análisis delegado, iteraciones y SQLite.
+- [ ] **Habilidades:** enseñar señal de fallo, lección persistida y el cambio ejecutable que hereda el sucesor.
+- [ ] **Demo/presentación:** secuencia de falla → aprendizaje → generación → comparación; distinguir sistema, Codex e intervención humana.
+
 ## Criterios de aceptación del sprint
 
-- [ ] KYC Agent y Verification Agent ejecutados realmente por OpenAI Agents SDK con trazas comprobables.
+- [ ] KYC y Verification ejecutados con Agents SDK y trazas reales en el criterio principal; modo local/determinista solo se usa como respaldo, claramente marcado.
 - [ ] Herramientas simuladas allowlist ejecutadas y con evidencia en la traza.
 - [ ] Evaluador independiente compara resultados contra expectativas separadas.
 - [ ] Casos de descubrimiento, validación y test final son conjuntos distintos.
 - [ ] Reflection genera una política que cambia el comportamiento del Builder de forma ejecutable.
 - [ ] Aprendizaje se acepta solo con validación y no puede alterar controles financieros obligatorios.
-- [ ] Builder genera un `AgentSystemDefinition` validado y el backend instancia/ejecuta el Sistema B.
-- [ ] Baseline y learned corren sobre la misma suite reservada; métricas salen de resultados reales por caso.
+- [ ] Builder genera un `AgentSystemDefinition` validado y el backend instancia/ejecuta Gen 1.
+- [ ] Sistema inicial y sucesor corren sobre los mismos casos semánticos; métricas salen de resultados por caso.
+- [ ] Cada versión, ejecución, fallo, propuesta y resultado de validación queda en SQLite.
 - [ ] UI refleja fielmente modo, evidencia, trazas, errores y revisión humana.
 - [ ] Build, pruebas y demo completados, o bloqueos descritos sin afirmar éxito.
 

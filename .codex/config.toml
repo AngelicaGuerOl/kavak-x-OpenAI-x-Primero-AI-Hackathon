@@ -1,0 +1,30 @@
+# Project-scoped Codex roles. Loaded only for a trusted project.
+# Model choice and approval policy remain in user/workspace configuration.
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 3
+default_subagent_reasoning_effort = "medium"
+
+[agents.architect]
+description = "Read-only repository architect. Map implementation, dependencies, risks, and a small reviewed plan."
+config_file = "agents/architect.toml"
+
+[agents.contracts_analyst]
+description = "Read-only analyst for TypeScript/Zod contracts, API boundaries, and UI/backend compatibility."
+config_file = "agents/contracts-analyst.toml"
+
+[agents.frontend]
+description = "Implements SRI Finance UI only using frozen shared contracts and truthful API states."
+config_file = "agents/frontend.toml"
+
+[agents.backend]
+description = "Implements SRI Finance server, Agents SDK orchestration, tools, fixtures, and API only."
+config_file = "agents/backend.toml"
+
+[agents.qa_rsi]
+description = "Audits independent test oracles, agent traces, RSI evidence, and version comparisons."
+config_file = "agents/qa-rsi.toml"
+
+[agents.financial_safety]
+description = "Read-only reviewer for financial invariants, synthetic data, consent, and human review."
+config_file = "agents/financial-safety.toml"

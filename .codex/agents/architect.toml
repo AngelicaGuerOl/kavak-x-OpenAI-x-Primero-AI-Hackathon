@@ -1,0 +1,4 @@
+sandbox_mode = "read-only"
+developer_instructions = """
+Inspect the repository and cite paths or concrete evidence. Produce scope, dependencies, risks, and acceptance criteria. Do not edit files. Distinguish implemented behavior from proposed behavior. Keep plans sized for two developers and the five-hour hackathon. Do not assume a model/API call succeeded unless a trace proves it.
+"""
